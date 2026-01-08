@@ -217,6 +217,13 @@ hr {
     margin-bottom: var(--spacing-small);
 }
 
+#about img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: var(--spacing-content);
+}
+
 /* Writing Column */
 #writing h1 {
     margin-bottom: var(--spacing-content);

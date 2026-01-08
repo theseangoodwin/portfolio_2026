@@ -53,6 +53,7 @@ fs.copyFileSync(srcCssPath, distCssPath);
 // Copy fonts directory to dist
 const srcFontsDir = path.join(srcDir, 'fonts');
 const distFontsDir = path.join(distDir, 'fonts');
+let fontCount = 0;
 if (fs.existsSync(srcFontsDir)) {
     if (!fs.existsSync(distFontsDir)) {
         fs.mkdirSync(distFontsDir, { recursive: true });
@@ -64,12 +65,29 @@ if (fs.existsSync(srcFontsDir)) {
             path.join(distFontsDir, file)
         );
     });
-    console.log(`✓ Build complete!`);
-    console.log(`  - Generated: ${distHtmlPath}`);
-    console.log(`  - Copied: ${distCssPath}`);
-    console.log(`  - Copied: ${fontFiles.length} font file(s)`);
-} else {
-    console.log('✓ Build complete!');
-    console.log(`  - Generated: ${distHtmlPath}`);
-    console.log(`  - Copied: ${distCssPath}`);
+    fontCount = fontFiles.length;
 }
+
+// Copy images directory to dist
+const srcImagesDir = path.join(srcDir, 'images');
+const distImagesDir = path.join(distDir, 'images');
+let imageCount = 0;
+if (fs.existsSync(srcImagesDir)) {
+    if (!fs.existsSync(distImagesDir)) {
+        fs.mkdirSync(distImagesDir, { recursive: true });
+    }
+    const imageFiles = fs.readdirSync(srcImagesDir);
+    imageFiles.forEach(file => {
+        fs.copyFileSync(
+            path.join(srcImagesDir, file),
+            path.join(distImagesDir, file)
+        );
+    });
+    imageCount = imageFiles.length;
+}
+
+console.log('✓ Build complete!');
+console.log(`  - Generated: ${distHtmlPath}`);
+console.log(`  - Copied: ${distCssPath}`);
+if (fontCount > 0) console.log(`  - Copied: ${fontCount} font file(s)`);
+if (imageCount > 0) console.log(`  - Copied: ${imageCount} image file(s)`);
