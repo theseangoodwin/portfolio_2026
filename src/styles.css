@@ -1,0 +1,287 @@
+/* ================================
+   Design Tokens & CSS Variables
+   ================================ */
+
+:root {
+    /* Colors - Light Mode (Primary) */
+    --color-bg: #fffcf0;
+    --color-text-primary: #1c1b1a;
+    --color-text-secondary: #666666;
+    --color-accent: #dc3c22;
+    --color-divider: #e8e5dc;
+
+    /* Typography */
+    --font-mono: 'iA Writer Quattro', 'IBM Plex Mono', 'Courier Prime', 'Courier New', monospace;
+
+    /* Font Sizes */
+    --font-size-hero: 36px;
+    --font-size-section-header: 26px;
+    --font-size-role: 19px;
+    --font-size-body: 17px;
+    --font-size-small: 15px;
+    --font-size-meta: 14px;
+
+    /* Spacing */
+    --spacing-section: 90px;
+    --spacing-content: 40px;
+    --spacing-small: 20px;
+    --spacing-xs: 10px;
+
+    /* Layout */
+    --max-width: 750px;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.8;
+    --letter-spacing: 0.015em;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    :root {
+        --font-size-hero: 28px;
+        --font-size-section-header: 22px;
+        --font-size-role: 17px;
+        --font-size-body: 16px;
+        --spacing-section: 60px;
+        --spacing-content: 30px;
+    }
+}
+
+/* ================================
+   Reset & Base Styles
+   ================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================
+   Layout & Container
+   ================================ */
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 20px;
+    }
+}
+
+/* ================================
+   Typography
+   ================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    line-height: var(--line-height-tight);
+}
+
+h1 {
+    font-size: var(--font-size-hero);
+    margin-bottom: var(--spacing-xs);
+}
+
+h2 {
+    font-size: var(--font-size-section-header);
+    margin-bottom: var(--spacing-small);
+    margin-top: var(--spacing-content);
+}
+
+h3 {
+    font-size: var(--font-size-role);
+    margin-bottom: var(--spacing-xs);
+    margin-top: var(--spacing-small);
+}
+
+p {
+    margin-bottom: var(--spacing-small);
+}
+
+/* Links */
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: var(--spacing-small);
+}
+
+li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Strong/Bold */
+strong {
+    font-weight: 700;
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--color-divider);
+    margin: var(--spacing-content) 0;
+}
+
+/* ================================
+   Header
+   ================================ */
+
+.site-header {
+    margin-bottom: var(--spacing-section);
+    padding-bottom: var(--spacing-content);
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.site-title {
+    font-size: var(--font-size-hero);
+    margin-bottom: var(--spacing-xs);
+}
+
+.site-subtitle {
+    font-size: var(--font-size-role);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-small);
+}
+
+.site-description {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--spacing-content);
+    max-width: 650px;
+}
+
+.site-nav {
+    display: flex;
+    gap: var(--spacing-small);
+    flex-wrap: wrap;
+}
+
+.site-nav a {
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+}
+
+.site-nav a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+/* ================================
+   Content Sections
+   ================================ */
+
+.content-section {
+    margin-bottom: var(--spacing-section);
+}
+
+.content-section:last-of-type {
+    margin-bottom: var(--spacing-section);
+}
+
+/* Experience Section Specific */
+#experience h2:first-child {
+    margin-top: 0;
+}
+
+#experience h2 {
+    font-size: var(--font-size-role);
+    margin-top: var(--spacing-content);
+    margin-bottom: var(--spacing-xs);
+}
+
+#experience h3 {
+    font-size: var(--font-size-body);
+    margin-top: var(--spacing-small);
+}
+
+#experience strong {
+    color: var(--color-text-primary);
+}
+
+#experience p + p {
+    margin-top: var(--spacing-xs);
+}
+
+/* Meta info (dates, etc) */
+#experience h2 + p,
+#experience strong + p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-meta);
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+.site-footer {
+    margin-top: var(--spacing-section);
+    padding-top: var(--spacing-content);
+    border-top: 1px solid var(--color-divider);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-small);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-small);
+}
+
+.footer-links a {
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
+}
+
+.footer-updated {
+    font-size: var(--font-size-meta);
+    color: var(--color-text-secondary);
+}
+
+/* ================================
+   Print Styles
+   ================================ */
+
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+
+    .site-nav {
+        display: none;
+    }
+}

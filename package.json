@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-2026",
+  "version": "1.0.0",
+  "description": "Sean Goodwin's digital garden portfolio",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npm run build && npx http-server dist -p 8080 -o",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["portfolio", "digital-garden"],
+  "author": "Sean Goodwin",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^11.1.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
