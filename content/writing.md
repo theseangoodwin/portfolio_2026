@@ -1,19 +1,16 @@
 # Writing
 
-I write about design, product development, and the intersection of technology and creativity.
+### [Essay Title Coming Soon](/writing/essay-1)
+*January 2026*
 
-## Recent Essays
+A reflection on design systems and AI integration.
 
-### [Coming Soon]
-Stay tuned for articles on design systems, AI integration, and product strategy.
+### [Another Essay Title](/writing/essay-2)
+*December 2025*
 
----
+Thoughts on product strategy and user experience.
 
-## External Links
+### [External: Medium](https://medium.com/@seangoodwin)
+*Archive*
 
-- [Medium](https://medium.com/@seangoodwin)
-- [Substack Newsletter](https://seangoodwin.substack.com)
-
----
-
-*This section will be updated with essays and reflections on design, product, and technology.*
+Older writing and essays.

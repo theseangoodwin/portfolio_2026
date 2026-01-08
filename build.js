@@ -28,18 +28,18 @@ const templatePath = path.join(srcDir, 'index.html');
 let html = fs.readFileSync(templatePath, 'utf8');
 
 // Process content files
-const experienceMarkdown = readMarkdown('experience.md');
+const aboutMarkdown = readMarkdown('about.md');
 const writingMarkdown = readMarkdown('writing.md');
-const readingMarkdown = readMarkdown('reading.md');
+const experienceMarkdown = readMarkdown('experience.md');
 
-const experienceHtml = convertMarkdown(experienceMarkdown);
+const aboutHtml = convertMarkdown(aboutMarkdown);
 const writingHtml = convertMarkdown(writingMarkdown);
-const readingHtml = convertMarkdown(readingMarkdown);
+const experienceHtml = convertMarkdown(experienceMarkdown);
 
 // Inject content into template
-html = html.replace('<!-- EXPERIENCE_CONTENT -->', experienceHtml);
+html = html.replace('<!-- ABOUT_CONTENT -->', aboutHtml);
 html = html.replace('<!-- WRITING_CONTENT -->', writingHtml);
-html = html.replace('<!-- READING_CONTENT -->', readingHtml);
+html = html.replace('<!-- EXPERIENCE_CONTENT -->', experienceHtml);
 
 // Write HTML to dist
 const distHtmlPath = path.join(distDir, 'index.html');

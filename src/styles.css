@@ -40,7 +40,8 @@
     --spacing-xs: 10px;
 
     /* Layout */
-    --max-width: 750px;
+    --max-width: 1400px;
+    --column-gap: 60px;
     --line-height-tight: 1.4;
     --line-height-normal: 1.8;
     --letter-spacing: 0.015em;
@@ -90,7 +91,32 @@ body {
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 60px 30px;
+    padding: 60px 40px;
+}
+
+/* ================================
+   Three Column Grid
+   ================================ */
+
+.three-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--column-gap);
+    margin-top: var(--spacing-content);
+}
+
+.column h1:first-child {
+    font-size: var(--font-size-section-header);
+    margin-bottom: var(--spacing-content);
+    margin-top: 0;
+}
+
+/* Mobile: Stack columns vertically */
+@media (max-width: 1024px) {
+    .three-column-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-section);
+    }
 }
 
 @media (max-width: 768px) {
@@ -168,87 +194,91 @@ hr {
    ================================ */
 
 .site-header {
-    margin-bottom: var(--spacing-section);
-    padding-bottom: var(--spacing-content);
-    border-bottom: 1px solid var(--color-divider);
+    margin-bottom: var(--spacing-content);
 }
 
 .site-title {
     font-size: var(--font-size-hero);
-    margin-bottom: var(--spacing-xs);
-}
-
-.site-subtitle {
-    font-size: var(--font-size-role);
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-small);
-}
-
-.site-description {
-    font-size: var(--font-size-body);
-    line-height: var(--line-height-normal);
-    margin-bottom: var(--spacing-content);
-    max-width: 650px;
-}
-
-.site-nav {
-    display: flex;
-    gap: var(--spacing-small);
-    flex-wrap: wrap;
-}
-
-.site-nav a {
-    font-size: var(--font-size-small);
-    color: var(--color-text-secondary);
-    text-decoration: none;
-}
-
-.site-nav a:hover {
-    color: var(--color-accent);
-    text-decoration: none;
+    margin-bottom: 0;
 }
 
 /* ================================
-   Content Sections
+   Column Content Styles
    ================================ */
 
-.content-section {
-    margin-bottom: var(--spacing-section);
+/* About Column */
+#about h1 {
+    margin-bottom: var(--spacing-small);
 }
 
-.content-section:last-of-type {
-    margin-bottom: var(--spacing-section);
+#about p {
+    margin-bottom: var(--spacing-small);
 }
 
-/* Experience Section Specific */
-#experience h2:first-child {
+/* Writing Column */
+#writing h1 {
+    margin-bottom: var(--spacing-content);
+}
+
+#writing h3 {
+    font-size: var(--font-size-body);
+    margin-top: var(--spacing-content);
+    margin-bottom: 5px;
+}
+
+#writing h3:first-of-type {
     margin-top: 0;
+}
+
+#writing em {
+    display: block;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-meta);
+    font-style: normal;
+    margin-bottom: var(--spacing-xs);
+}
+
+#writing p {
+    margin-bottom: var(--spacing-small);
+}
+
+/* Experience Column */
+#experience h1 {
+    margin-bottom: var(--spacing-content);
 }
 
 #experience h2 {
     font-size: var(--font-size-role);
     margin-top: var(--spacing-content);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 5px;
+}
+
+#experience h2:first-of-type {
+    margin-top: 0;
 }
 
 #experience h3 {
     font-size: var(--font-size-body);
     margin-top: var(--spacing-small);
+    margin-bottom: 5px;
 }
 
 #experience strong {
     color: var(--color-text-primary);
 }
 
-#experience p + p {
-    margin-top: var(--spacing-xs);
-}
-
-/* Meta info (dates, etc) */
-#experience h2 + p,
-#experience strong + p {
+#experience p {
     color: var(--color-text-secondary);
     font-size: var(--font-size-meta);
+    margin-bottom: var(--spacing-xs);
+}
+
+#experience ul {
+    margin-bottom: var(--spacing-small);
+}
+
+#experience hr {
+    margin: var(--spacing-content) 0;
 }
 
 /* ================================
