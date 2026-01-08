@@ -247,34 +247,30 @@ hr {
     margin-bottom: var(--spacing-content);
 }
 
-#experience h2 {
-    font-size: var(--font-size-role);
-    margin-top: var(--spacing-content);
+.experience-entry {
+    margin-bottom: var(--spacing-small);
+}
+
+.experience-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     margin-bottom: 5px;
 }
 
-#experience h2:first-of-type {
-    margin-top: 0;
-}
-
-#experience h3 {
+.experience-title {
     font-size: var(--font-size-body);
-    margin-top: var(--spacing-small);
-    margin-bottom: 5px;
-}
-
-#experience strong {
     color: var(--color-text-primary);
 }
 
-#experience p {
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-meta);
-    margin-bottom: var(--spacing-xs);
+.experience-date {
+    font-size: var(--font-size-body);
+    color: var(--color-text-primary);
 }
 
-#experience ul {
-    margin-bottom: var(--spacing-small);
+.experience-company {
+    font-size: var(--font-size-body);
+    color: var(--color-text-secondary);
 }
 
 #experience hr {

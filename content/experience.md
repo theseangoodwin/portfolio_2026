@@ -1,48 +1,49 @@
 # Experience
 
-## Atlassian
-**2025 - Present**
-
-### Workflows Pillar IC Lead (P70)
-Scaling Meeting Recordings from acquisition fold-in GA to net new experience for TWC customers.
-
----
-
-## Atlassian
-**2023 - 2025**
-
-### Lead Designer on Integration Experience
-Integrating Loom into Confluence and Jira on Day 1 of acquisition.
+<div class="experience-entry">
+<div class="experience-title-row">
+<span class="experience-title">Principal Product Designer</span>
+<span class="experience-date">2025-2026</span>
+</div>
+<div class="experience-company">Atlassian</div>
+</div>
 
 ---
 
-## Loom
-**2023**
-
-### Product Design
-- **Incubated Loom Workflows**: First video to generative AI features on product
-- **Launched Loom AI**: Lead DRI for the launch
-
----
-
-## Loom
-**2022 - 2023**
-
-### Product Design
-Loom Core Experience, ViewerX
+<div class="experience-entry">
+<div class="experience-title-row">
+<span class="experience-title">Lead Product Designer</span>
+<span class="experience-date">2023-2025</span>
+</div>
+<div class="experience-company">Atlassian</div>
+</div>
 
 ---
 
-## Twitter
-**2020 - 2022**
-
-### Product Design
-Advertiser experience
+<div class="experience-entry">
+<div class="experience-title-row">
+<span class="experience-title">Staff Product Designer</span>
+<span class="experience-date">2022-2023</span>
+</div>
+<div class="experience-company">Loom</div>
+</div>
 
 ---
 
-## Brave UX
-**2015 - 2020**
+<div class="experience-entry">
+<div class="experience-title-row">
+<span class="experience-title">Product Designer</span>
+<span class="experience-date">2020-2022</span>
+</div>
+<div class="experience-company">Twitter</div>
+</div>
 
-### UX Designer
-UX agency work
+---
+
+<div class="experience-entry">
+<div class="experience-title-row">
+<span class="experience-title">UX Designer</span>
+<span class="experience-date">2015-2020</span>
+</div>
+<div class="experience-company">Brave UX</div>
+</div>
