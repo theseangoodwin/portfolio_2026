@@ -50,6 +50,26 @@ const srcCssPath = path.join(srcDir, 'styles.css');
 const distCssPath = path.join(distDir, 'styles.css');
 fs.copyFileSync(srcCssPath, distCssPath);
 
-console.log('✓ Build complete!');
-console.log(`  - Generated: ${distHtmlPath}`);
-console.log(`  - Copied: ${distCssPath}`);
+// Copy fonts directory to dist
+const srcFontsDir = path.join(srcDir, 'fonts');
+const distFontsDir = path.join(distDir, 'fonts');
+if (fs.existsSync(srcFontsDir)) {
+    if (!fs.existsSync(distFontsDir)) {
+        fs.mkdirSync(distFontsDir, { recursive: true });
+    }
+    const fontFiles = fs.readdirSync(srcFontsDir);
+    fontFiles.forEach(file => {
+        fs.copyFileSync(
+            path.join(srcFontsDir, file),
+            path.join(distFontsDir, file)
+        );
+    });
+    console.log(`✓ Build complete!`);
+    console.log(`  - Generated: ${distHtmlPath}`);
+    console.log(`  - Copied: ${distCssPath}`);
+    console.log(`  - Copied: ${fontFiles.length} font file(s)`);
+} else {
+    console.log('✓ Build complete!');
+    console.log(`  - Generated: ${distHtmlPath}`);
+    console.log(`  - Copied: ${distCssPath}`);
+}

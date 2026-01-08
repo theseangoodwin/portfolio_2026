@@ -1,4 +1,16 @@
 /* ================================
+   Font Face Declarations
+   ================================ */
+
+@font-face {
+    font-family: 'Berkeley Mono';
+    src: url('fonts/BerkeleyMonoTrial-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ================================
    Design Tokens & CSS Variables
    ================================ */
 
