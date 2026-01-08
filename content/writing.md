@@ -1,16 +1,11 @@
 # Writing
 
-### [Essay Title Coming Soon](/writing/essay-1)
-*January 2026*
+### [Four books that made me a better product designer in 2025](https://shippingtoprod.substack.com/p/four-books-that-made-me-a-better)
+*December 16, 2025*
 
-A reflection on design systems and AI integration.
+Reflections on four influential books I read during 2025.
 
-### [Another Essay Title](/writing/essay-2)
-*December 2025*
+### [No, designers won't be fired because of AI](https://shippingtoprod.substack.com/p/no-designers-wont-be-fired-because)
+*February 16, 2023*
 
-Thoughts on product strategy and user experience.
-
-### [External: Medium](https://medium.com/@seangoodwin)
-*Archive*
-
-Older writing and essays.
+An optimistic perspective on how AI will impact the design profession.
