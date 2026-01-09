@@ -23,11 +23,38 @@ function convertMarkdown(markdown) {
     return marked.parse(markdown);
 }
 
+// Recursively copy directory
+function copyDirectory(src, dest) {
+    if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+    }
+
+    const items = fs.readdirSync(src);
+    let count = 0;
+
+    items.forEach(item => {
+        const srcPath = path.join(src, item);
+        const destPath = path.join(dest, item);
+        const stat = fs.statSync(srcPath);
+
+        if (stat.isDirectory()) {
+            count += copyDirectory(srcPath, destPath);
+        } else {
+            fs.copyFileSync(srcPath, destPath);
+            count++;
+        }
+    });
+
+    return count;
+}
+
 // Read templates
 const indexTemplatePath = path.join(srcDir, 'index.html');
 const workTemplatePath = path.join(srcDir, 'work.html');
+const bookshelfTemplatePath = path.join(srcDir, 'bookshelf.html');
 let indexHtml = fs.readFileSync(indexTemplatePath, 'utf8');
 let workHtml = fs.readFileSync(workTemplatePath, 'utf8');
+let bookshelfHtml = fs.readFileSync(bookshelfTemplatePath, 'utf8');
 
 // Process content files for index page
 const aboutMarkdown = readMarkdown('about.md');
@@ -58,6 +85,17 @@ workHtml = workHtml.replace('<!-- WORK_CONTENT -->', workContentHtml);
 const distWorkPath = path.join(distDir, 'work.html');
 fs.writeFileSync(distWorkPath, workHtml, 'utf8');
 
+// Process content files for bookshelf page
+const bookshelfMarkdown = readMarkdown('bookshelf.md');
+const bookshelfContentHtml = convertMarkdown(bookshelfMarkdown);
+
+// Inject content into bookshelf template
+bookshelfHtml = bookshelfHtml.replace('<!-- BOOKSHELF_CONTENT -->', bookshelfContentHtml);
+
+// Write bookshelf.html to dist
+const distBookshelfPath = path.join(distDir, 'bookshelf.html');
+fs.writeFileSync(distBookshelfPath, bookshelfHtml, 'utf8');
+
 // Copy CSS to dist
 const srcCssPath = path.join(srcDir, 'styles.css');
 const distCssPath = path.join(distDir, 'styles.css');
@@ -81,22 +119,12 @@ if (fs.existsSync(srcFontsDir)) {
     fontCount = fontFiles.length;
 }
 
-// Copy images directory to dist
+// Copy images directory to dist (recursively)
 const srcImagesDir = path.join(srcDir, 'images');
 const distImagesDir = path.join(distDir, 'images');
 let imageCount = 0;
 if (fs.existsSync(srcImagesDir)) {
-    if (!fs.existsSync(distImagesDir)) {
-        fs.mkdirSync(distImagesDir, { recursive: true });
-    }
-    const imageFiles = fs.readdirSync(srcImagesDir);
-    imageFiles.forEach(file => {
-        fs.copyFileSync(
-            path.join(srcImagesDir, file),
-            path.join(distImagesDir, file)
-        );
-    });
-    imageCount = imageFiles.length;
+    imageCount = copyDirectory(srcImagesDir, distImagesDir);
 }
 
 // Copy videos directory to dist
@@ -120,6 +148,7 @@ if (fs.existsSync(srcVideosDir)) {
 console.log('✓ Build complete!');
 console.log(`  - Generated: ${distIndexPath}`);
 console.log(`  - Generated: ${distWorkPath}`);
+console.log(`  - Generated: ${distBookshelfPath}`);
 console.log(`  - Copied: ${distCssPath}`);
 if (fontCount > 0) console.log(`  - Copied: ${fontCount} font file(s)`);
 if (imageCount > 0) console.log(`  - Copied: ${imageCount} image file(s)`);

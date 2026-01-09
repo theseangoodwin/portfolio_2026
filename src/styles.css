@@ -413,6 +413,75 @@ hr {
 }
 
 /* ================================
+   Bookshelf Page Styles
+   ================================ */
+
+.bookshelf-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.bookshelf-content h1 {
+    font-size: var(--font-size-hero);
+    margin-bottom: var(--spacing-content);
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.bookshelf-content h2 {
+    font-size: var(--font-size-section);
+    margin-top: var(--spacing-section);
+    margin-bottom: var(--spacing-content);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.bookshelf-content h2:first-of-type {
+    margin-top: 0;
+}
+
+.book-entry {
+    display: flex;
+    gap: var(--spacing-content);
+    margin-bottom: var(--spacing-content);
+    align-items: flex-start;
+}
+
+.book-cover {
+    flex-shrink: 0;
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px var(--color-accent-50);
+}
+
+.book-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.book-info h3 {
+    font-size: var(--font-size-role);
+    margin: 0 0 5px 0;
+}
+
+.book-author {
+    font-size: var(--font-size-body);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .book-entry {
+        gap: var(--spacing-small);
+    }
+
+    .book-cover {
+        width: 60px;
+    }
+}
+
+/* ================================
    Footer
    ================================ */
 
