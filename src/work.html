@@ -51,6 +51,20 @@
         </footer>
     </div>
 
+    <!-- Circular Video Player -->
+    <div class="video-player-circle">
+        <video id="circle-video" playsinline>
+            <source src="videos/spiel.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay" id="video-overlay">
+            <div class="play-icon" id="play-icon">
+                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Color Themes
         const themes = [
@@ -148,19 +162,5 @@
             }
         });
     </script>
-
-    <!-- Circular Video Player -->
-    <div class="video-player-circle">
-        <video id="circle-video" playsinline>
-            <source src="videos/spiel.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay" id="video-overlay">
-            <div class="play-icon" id="play-icon">
-                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
