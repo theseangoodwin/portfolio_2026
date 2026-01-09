@@ -128,6 +128,39 @@
                 element.classList.add('animate');
             });
         });
+
+        // Circular video player
+        const videoPlayer = document.getElementById('circle-video');
+        const videoOverlay = document.getElementById('video-overlay');
+        const playIcon = document.getElementById('play-icon');
+
+        playIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            videoPlayer.play();
+            videoOverlay.classList.add('hidden');
+        });
+
+        videoPlayer.addEventListener('click', function() {
+            if (!videoPlayer.paused) {
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+                videoOverlay.classList.remove('hidden');
+            }
+        });
     </script>
+
+    <!-- Circular Video Player -->
+    <div class="video-player-circle">
+        <video id="circle-video" playsinline>
+            <source src="videos/spiel.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay" id="video-overlay">
+            <div class="play-icon" id="play-icon">
+                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
