@@ -215,9 +215,9 @@
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
-            const rect = videoCircle.getBoundingClientRect();
-            const scaledWidth = rect.width;
-            const scaledHeight = rect.height;
+            // Use the scaled size (200px * 1.2 = 240px) for constraints
+            const scaledWidth = 200 * 1.2;
+            const scaledHeight = 200 * 1.2;
             const margin = 40;
 
             let x = clientX - dragOffset.x;
@@ -240,6 +240,9 @@
             if (!isDragging) return;
             isDragging = false;
             videoCircle.classList.remove('dragging');
+
+            // Reset scale to normal playback size
+            videoCircle.style.transform = 'translateX(-50%)';
 
             // Reset hasDragged after a short delay to allow click event to check it
             setTimeout(() => {
