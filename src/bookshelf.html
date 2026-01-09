@@ -188,6 +188,9 @@
             videoOverlay.classList.add('hidden');
             videoCircle.classList.add('expanded');
             speedButton.classList.add('visible');
+
+            // Update position after expansion animation
+            setTimeout(updateSpeedButtonPosition, 400);
         });
 
         videoPlayer.addEventListener('click', function(e) {
