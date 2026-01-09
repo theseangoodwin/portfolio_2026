@@ -257,8 +257,6 @@ hr {
 }
 
 .theme-switcher {
-    width: 16px;
-    height: 16px;
     background: none;
     border: none;
     cursor: pointer;
@@ -267,6 +265,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
 }
 
 .theme-switcher svg {
@@ -274,6 +273,18 @@ hr {
     height: 16px;
     stroke: var(--color-accent);
     transition: stroke 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.theme-preview {
+    display: flex;
+    gap: 0;
+}
+
+.theme-preview-square {
+    width: 8px;
+    height: 8px;
+    transition: background-color 0.3s ease;
 }
 
 .theme-switcher:hover svg {

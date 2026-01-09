@@ -31,6 +31,11 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
                     </svg>
+                    <div class="theme-preview">
+                        <div class="theme-preview-square" id="theme-preview-1"></div>
+                        <div class="theme-preview-square" id="theme-preview-2"></div>
+                        <div class="theme-preview-square" id="theme-preview-3"></div>
+                    </div>
                 </button>
             </nav>
         </header>
@@ -95,6 +100,21 @@
             return `rgba(${r}, ${g}, ${b}, ${alpha})`;
         }
 
+        // Update theme preview squares
+        function updateThemePreview(currentIndex) {
+            const preview1 = document.getElementById('theme-preview-1');
+            const preview2 = document.getElementById('theme-preview-2');
+            const preview3 = document.getElementById('theme-preview-3');
+
+            const nextIndex1 = (currentIndex + 1) % themes.length;
+            const nextIndex2 = (currentIndex + 2) % themes.length;
+            const nextIndex3 = (currentIndex + 3) % themes.length;
+
+            preview1.style.backgroundColor = themes[nextIndex1].base;
+            preview2.style.backgroundColor = themes[nextIndex2].base;
+            preview3.style.backgroundColor = themes[nextIndex3].base;
+        }
+
         // Apply theme
         function applyTheme(index) {
             const theme = themes[index];
@@ -106,6 +126,7 @@
 
             currentThemeIndex = index;
             localStorage.setItem('themeIndex', index);
+            updateThemePreview(index);
         }
 
         // Cycle to next theme
