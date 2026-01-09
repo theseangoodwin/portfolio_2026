@@ -153,6 +153,7 @@
         const videoCircle = document.querySelector('.video-player-circle');
 
         let isDragging = false;
+        let hasDragged = false;
         let dragOffset = { x: 0, y: 0 };
 
         playButton.addEventListener('click', function(e) {
@@ -163,7 +164,7 @@
         });
 
         videoPlayer.addEventListener('click', function(e) {
-            if (!videoPlayer.paused && !isDragging) {
+            if (!videoPlayer.paused && !hasDragged) {
                 videoPlayer.pause();
                 videoPlayer.currentTime = 0;
                 videoOverlay.classList.remove('hidden');
@@ -181,7 +182,7 @@
             if (!videoCircle.classList.contains('expanded')) return;
 
             isDragging = true;
-            videoCircle.classList.add('dragging');
+            hasDragged = false;
 
             const rect = videoCircle.getBoundingClientRect();
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
@@ -196,11 +197,14 @@
         function drag(e) {
             if (!isDragging) return;
 
+            hasDragged = true;
+            videoCircle.classList.add('dragging');
+
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
             const rect = videoCircle.getBoundingClientRect();
-            const radius = rect.width / 2;
+            const radius = rect.width / 2 / 1.2; // Account for scale
             const margin = 40;
 
             let x = clientX - dragOffset.x;
@@ -212,7 +216,6 @@
 
             videoCircle.style.left = x + 'px';
             videoCircle.style.top = y + 'px';
-            videoCircle.style.transform = 'translate(-50%, -50%)';
 
             e.preventDefault();
         }
@@ -221,6 +224,11 @@
             if (!isDragging) return;
             isDragging = false;
             videoCircle.classList.remove('dragging');
+
+            // Reset hasDragged after a short delay to allow click event to check it
+            setTimeout(() => {
+                hasDragged = false;
+            }, 100);
         }
 
         videoCircle.addEventListener('mousedown', startDrag);
