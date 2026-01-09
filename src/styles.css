@@ -74,6 +74,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
 }
 
 html {
