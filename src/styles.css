@@ -20,13 +20,13 @@
     /* Colors - Theme-based (will be overridden by JS) */
     --color-base: #fffcf0;
     --color-accent: #000000;
-    --color-accent-20: rgba(0, 0, 0, 0.2);
+    --color-accent-50: rgba(0, 0, 0, 0.5);
 
     /* Derived colors */
     --color-bg: var(--color-base);
     --color-text-primary: var(--color-accent);
-    --color-text-secondary: var(--color-accent-20);
-    --color-divider: var(--color-accent-20);
+    --color-text-secondary: var(--color-accent-50);
+    --color-divider: var(--color-accent-50);
 
     /* Typography */
     --font-mono: 'Berkeley Mono', 'Berkeley Mono Variable', 'IBM Plex Mono', 'Courier Prime', 'Courier New', monospace;
