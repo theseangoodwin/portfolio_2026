@@ -613,8 +613,8 @@ hr {
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
@@ -624,8 +624,8 @@ hr {
 }
 
 .video-player-circle.expanded {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     bottom: 60px;
 }
 
@@ -634,6 +634,7 @@ hr {
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: auto;
 }
 
 .video-overlay {
@@ -654,6 +655,7 @@ hr {
 .video-overlay.hidden {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
 }
 
 .play-button-wrapper {
@@ -695,14 +697,14 @@ hr {
 
 @media (max-width: 768px) {
     .video-player-circle {
-        width: 60px;
-        height: 60px;
+        width: 90px;
+        height: 90px;
         bottom: 20px;
     }
 
     .video-player-circle.expanded {
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
         bottom: 40px;
     }
 
