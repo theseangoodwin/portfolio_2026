@@ -8,8 +8,6 @@
 <div class="experience-company">Atlassian</div>
 </div>
 
----
-
 <div class="experience-entry">
 <div class="experience-title-row">
 <span class="experience-title">Lead Product Designer</span>
@@ -17,8 +15,6 @@
 </div>
 <div class="experience-company">Atlassian</div>
 </div>
-
----
 
 <div class="experience-entry">
 <div class="experience-title-row">
@@ -28,8 +24,6 @@
 <div class="experience-company">Loom</div>
 </div>
 
----
-
 <div class="experience-entry">
 <div class="experience-title-row">
 <span class="experience-title">Product Designer</span>
@@ -37,8 +31,6 @@
 </div>
 <div class="experience-company">Twitter</div>
 </div>
-
----
 
 <div class="experience-entry">
 <div class="experience-title-row">
