@@ -135,12 +135,12 @@ body {
    ================================ */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-sans);
     font-weight: 400;
     line-height: var(--line-height-tight);
 }
 
 h1 {
+    font-family: var(--font-sans);
     font-size: var(--font-size-hero);
     margin-bottom: var(--spacing-xs);
 }
@@ -217,7 +217,6 @@ hr {
 }
 
 .site-nav a {
-    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
     text-decoration: none;
@@ -273,7 +272,6 @@ hr {
 }
 
 #writing em {
-    font-family: var(--font-sans);
     display: block;
     color: var(--color-text-secondary);
     font-size: var(--font-size-meta);
@@ -302,19 +300,16 @@ hr {
 }
 
 .experience-title {
-    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
 }
 
 .experience-date {
-    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
 }
 
 .experience-company {
-    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-secondary);
 }
@@ -360,7 +355,6 @@ hr {
 }
 
 .work-date {
-    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-xs);
@@ -390,13 +384,11 @@ hr {
 }
 
 .footer-links a {
-    font-family: var(--font-sans);
     font-size: var(--font-size-small);
     color: var(--color-text-secondary);
 }
 
 .footer-updated {
-    font-family: var(--font-sans);
     font-size: var(--font-size-meta);
     color: var(--color-text-secondary);
 }
