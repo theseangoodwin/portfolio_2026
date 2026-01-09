@@ -651,7 +651,7 @@ hr {
     transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease, transform 0.4s ease;
     opacity: 0;
     filter: blur(6px);
-    animation: fadeInVideo 0.6s ease-out 0.1s forwards;
+    animation: fadeInVideo 0.6s ease-out 1s forwards;
 }
 
 .video-player-circle.expanded {
