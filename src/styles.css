@@ -350,7 +350,7 @@ hr {
 
 .experience-date {
     font-size: var(--font-size-body);
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
 }
 
 .experience-company {
