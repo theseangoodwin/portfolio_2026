@@ -634,7 +634,7 @@ hr {
 .video-player-circle.dragging {
     cursor: grabbing;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 4px transparent, 0 0 0 5px var(--color-divider);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 8px var(--color-bg), 0 0 0 10px var(--color-accent);
 }
 
 .video-player-circle.expanded:not(.dragging) {
