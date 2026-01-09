@@ -169,13 +169,16 @@ p {
 /* Links */
 a {
     color: var(--color-accent);
-    text-decoration: none;
+    text-decoration: underline;
     transition: opacity 0.2s ease;
+}
+
+a::after {
+    content: ' ↗︎';
 }
 
 a:hover {
     opacity: 0.7;
-    text-decoration: underline;
 }
 
 /* Lists */
@@ -227,6 +230,10 @@ hr {
     color: var(--color-text-primary);
     text-decoration: none;
     transition: color 0.2s ease;
+}
+
+.site-nav a::after {
+    content: none;
 }
 
 .site-nav a:hover {
