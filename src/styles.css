@@ -610,16 +610,23 @@ hr {
 
 .video-player-circle {
     position: fixed;
-    top: 40px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 180px;
-    height: 180px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: width 0.4s ease, height 0.4s ease, bottom 0.4s ease;
+}
+
+.video-player-circle.expanded {
+    width: 150px;
+    height: 150px;
+    bottom: 60px;
 }
 
 .video-player-circle video {
@@ -688,9 +695,15 @@ hr {
 
 @media (max-width: 768px) {
     .video-player-circle {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+    }
+
+    .video-player-circle.expanded {
         width: 120px;
         height: 120px;
-        top: 20px;
+        bottom: 40px;
     }
 
     .play-icon {

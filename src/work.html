@@ -150,11 +150,13 @@
         const videoPlayer = document.getElementById('circle-video');
         const videoOverlay = document.getElementById('video-overlay');
         const playButton = document.getElementById('play-button');
+        const videoCircle = document.querySelector('.video-player-circle');
 
         playButton.addEventListener('click', function(e) {
             e.stopPropagation();
             videoPlayer.play();
             videoOverlay.classList.add('hidden');
+            videoCircle.classList.add('expanded');
         });
 
         videoPlayer.addEventListener('click', function(e) {
@@ -162,6 +164,7 @@
                 videoPlayer.pause();
                 videoPlayer.currentTime = 0;
                 videoOverlay.classList.remove('hidden');
+                videoCircle.classList.remove('expanded');
             }
         });
     </script>
