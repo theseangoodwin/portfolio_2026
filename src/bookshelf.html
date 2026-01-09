@@ -68,6 +68,9 @@
         </div>
     </div>
 
+    <!-- Playback Speed Button -->
+    <button class="playback-speed-button" id="playback-speed-button">1.0×</button>
+
     <script>
         // Color Themes
         const themes = [
@@ -151,10 +154,33 @@
         const videoOverlay = document.getElementById('video-overlay');
         const playButton = document.getElementById('play-button');
         const videoCircle = document.querySelector('.video-player-circle');
+        const speedButton = document.getElementById('playback-speed-button');
 
         let isDragging = false;
         let hasDragged = false;
         let dragOffset = { x: 0, y: 0 };
+
+        // Playback speed control
+        const playbackSpeeds = [1.0, 1.2, 1.5, 1.7, 2.0];
+        let currentSpeedIndex = 0;
+
+        function updateSpeedButtonPosition() {
+            const rect = videoCircle.getBoundingClientRect();
+            speedButton.style.left = rect.left + rect.width / 2 + 'px';
+            speedButton.style.top = rect.bottom + 20 + 'px';
+            speedButton.style.transform = 'translateX(-50%)';
+        }
+
+        speedButton.addEventListener('click', function() {
+            currentSpeedIndex = (currentSpeedIndex + 1) % playbackSpeeds.length;
+            const speed = playbackSpeeds[currentSpeedIndex];
+            videoPlayer.playbackRate = speed;
+            speedButton.textContent = speed.toFixed(1) + '×';
+        });
+
+        // Update button position initially and on resize
+        updateSpeedButtonPosition();
+        window.addEventListener('resize', updateSpeedButtonPosition);
 
         playButton.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -195,6 +221,7 @@
 
             isDragging = true;
             hasDragged = false;
+            speedButton.classList.add('hidden');
 
             const rect = videoCircle.getBoundingClientRect();
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
@@ -233,6 +260,8 @@
             videoCircle.style.top = y + 'px';
             videoCircle.style.transform = 'translateX(-50%) scale(1.2)';
 
+            updateSpeedButtonPosition();
+
             e.preventDefault();
         }
 
@@ -240,9 +269,12 @@
             if (!isDragging) return;
             isDragging = false;
             videoCircle.classList.remove('dragging');
+            speedButton.classList.remove('hidden');
 
             // Reset scale to normal playback size
             videoCircle.style.transform = 'translateX(-50%)';
+
+            updateSpeedButtonPosition();
 
             // Reset hasDragged after a short delay to allow click event to check it
             setTimeout(() => {
