@@ -110,7 +110,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--column-gap);
-    margin-top: var(--spacing-content);
+    margin-top: calc(var(--spacing-content) + 100px);
 }
 
 .column h1:first-child {
@@ -126,6 +126,7 @@ body {
     .three-column-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-section);
+        margin-top: var(--spacing-content);
     }
 }
 
@@ -610,7 +611,7 @@ hr {
 
 .video-player-circle {
     position: fixed;
-    bottom: 40px;
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
@@ -620,13 +621,13 @@ hr {
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    transition: width 0.4s ease, height 0.4s ease, bottom 0.4s ease;
+    transition: width 0.4s ease, height 0.4s ease, top 0.4s ease;
 }
 
 .video-player-circle.expanded {
     width: 200px;
     height: 200px;
-    bottom: 60px;
+    top: 60px;
 }
 
 .video-player-circle video {
@@ -699,13 +700,13 @@ hr {
     .video-player-circle {
         width: 90px;
         height: 90px;
-        bottom: 20px;
+        top: 20px;
     }
 
     .video-player-circle.expanded {
         width: 150px;
         height: 150px;
-        bottom: 40px;
+        top: 40px;
     }
 
     .play-icon {
