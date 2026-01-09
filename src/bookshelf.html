@@ -69,7 +69,7 @@
     </div>
 
     <!-- Playback Speed Button -->
-    <button class="playback-speed-button" id="playback-speed-button">1.0×</button>
+    <button class="playback-speed-button" id="playback-speed-button">1.2×</button>
 
     <script>
         // Color Themes
@@ -162,7 +162,8 @@
 
         // Playback speed control
         const playbackSpeeds = [1.0, 1.2, 1.5, 1.7, 2.0];
-        let currentSpeedIndex = 0;
+        let currentSpeedIndex = 1;
+        videoPlayer.playbackRate = 1.2;
 
         function updateSpeedButtonPosition() {
             const rect = videoCircle.getBoundingClientRect();
