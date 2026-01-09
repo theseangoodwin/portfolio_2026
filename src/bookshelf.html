@@ -255,9 +255,10 @@
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
-            // Use the scaled size (200px * 1.2 = 240px) for constraints
-            const scaledWidth = 200 * 1.2;
-            const scaledHeight = 200 * 1.2;
+            // Use the scaled size for constraints (desktop: 200px * 1.2, mobile: 188px * 1.2)
+            const baseSize = window.innerWidth <= 768 ? 188 : 200;
+            const scaledWidth = baseSize * 1.2;
+            const scaledHeight = baseSize * 1.2;
             // Use 10px margin on single column layout, 40px on desktop
             const margin = window.innerWidth <= 1024 ? 10 : 40;
 
