@@ -572,6 +572,10 @@ hr {
     animation-delay: 0.5s;
 }
 
+.video-player-circle {
+    animation-delay: 1s;
+}
+
 /* Work page stagger */
 .work-content > h1 {
     animation-delay: 0.1s;
