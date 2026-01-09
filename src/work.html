@@ -245,7 +245,8 @@
             // Use the scaled size (200px * 1.2 = 240px) for constraints
             const scaledWidth = 200 * 1.2;
             const scaledHeight = 200 * 1.2;
-            const margin = 40;
+            // Use 10px margin on single column layout, 40px on desktop
+            const margin = window.innerWidth <= 1024 ? 10 : 40;
 
             let x = clientX - dragOffset.x;
             let y = clientY - dragOffset.y;
