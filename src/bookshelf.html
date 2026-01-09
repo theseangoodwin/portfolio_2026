@@ -189,7 +189,7 @@
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
             dragOffset.x = clientX - rect.left - rect.width / 2;
-            dragOffset.y = clientY - rect.top - rect.height / 2;
+            dragOffset.y = clientY - rect.top;
 
             e.preventDefault();
         }
@@ -204,18 +204,22 @@
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
             const rect = videoCircle.getBoundingClientRect();
-            const radius = rect.width / 2 / 1.2; // Account for scale
+            const scaledWidth = rect.width;
+            const scaledHeight = rect.height;
             const margin = 40;
 
             let x = clientX - dragOffset.x;
             let y = clientY - dragOffset.y;
 
             // Constrain to viewport with margin
-            x = Math.max(margin + radius, Math.min(window.innerWidth - margin - radius, x));
-            y = Math.max(margin + radius, Math.min(window.innerHeight - margin - radius, y));
+            // X is centered with translateX(-50%), so check half-width from center
+            x = Math.max(margin + scaledWidth / 2, Math.min(window.innerWidth - margin - scaledWidth / 2, x));
+            // Y uses top edge positioning, so check full height
+            y = Math.max(margin, Math.min(window.innerHeight - margin - scaledHeight, y));
 
             videoCircle.style.left = x + 'px';
             videoCircle.style.top = y + 'px';
+            videoCircle.style.transform = 'translateX(-50%) scale(1.2)';
 
             e.preventDefault();
         }
