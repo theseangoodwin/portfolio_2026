@@ -23,11 +23,13 @@ function convertMarkdown(markdown) {
     return marked.parse(markdown);
 }
 
-// Read template
-const templatePath = path.join(srcDir, 'index.html');
-let html = fs.readFileSync(templatePath, 'utf8');
+// Read templates
+const indexTemplatePath = path.join(srcDir, 'index.html');
+const workTemplatePath = path.join(srcDir, 'work.html');
+let indexHtml = fs.readFileSync(indexTemplatePath, 'utf8');
+let workHtml = fs.readFileSync(workTemplatePath, 'utf8');
 
-// Process content files
+// Process content files for index page
 const aboutMarkdown = readMarkdown('about.md');
 const writingMarkdown = readMarkdown('writing.md');
 const experienceMarkdown = readMarkdown('experience.md');
@@ -36,14 +38,25 @@ const aboutHtml = convertMarkdown(aboutMarkdown);
 const writingHtml = convertMarkdown(writingMarkdown);
 const experienceHtml = convertMarkdown(experienceMarkdown);
 
-// Inject content into template
-html = html.replace('<!-- ABOUT_CONTENT -->', aboutHtml);
-html = html.replace('<!-- WRITING_CONTENT -->', writingHtml);
-html = html.replace('<!-- EXPERIENCE_CONTENT -->', experienceHtml);
+// Inject content into index template
+indexHtml = indexHtml.replace('<!-- ABOUT_CONTENT -->', aboutHtml);
+indexHtml = indexHtml.replace('<!-- WRITING_CONTENT -->', writingHtml);
+indexHtml = indexHtml.replace('<!-- EXPERIENCE_CONTENT -->', experienceHtml);
 
-// Write HTML to dist
-const distHtmlPath = path.join(distDir, 'index.html');
-fs.writeFileSync(distHtmlPath, html, 'utf8');
+// Write index.html to dist
+const distIndexPath = path.join(distDir, 'index.html');
+fs.writeFileSync(distIndexPath, indexHtml, 'utf8');
+
+// Process content files for work page
+const workMarkdown = readMarkdown('work.md');
+const workContentHtml = convertMarkdown(workMarkdown);
+
+// Inject content into work template
+workHtml = workHtml.replace('<!-- WORK_CONTENT -->', workContentHtml);
+
+// Write work.html to dist
+const distWorkPath = path.join(distDir, 'work.html');
+fs.writeFileSync(distWorkPath, workHtml, 'utf8');
 
 // Copy CSS to dist
 const srcCssPath = path.join(srcDir, 'styles.css');
@@ -87,7 +100,8 @@ if (fs.existsSync(srcImagesDir)) {
 }
 
 console.log('✓ Build complete!');
-console.log(`  - Generated: ${distHtmlPath}`);
+console.log(`  - Generated: ${distIndexPath}`);
+console.log(`  - Generated: ${distWorkPath}`);
 console.log(`  - Copied: ${distCssPath}`);
 if (fontCount > 0) console.log(`  - Copied: ${fontCount} font file(s)`);
 if (imageCount > 0) console.log(`  - Copied: ${imageCount} image file(s)`);

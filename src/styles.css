@@ -197,11 +197,39 @@ hr {
 
 .site-header {
     margin-bottom: var(--spacing-content);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .site-title {
     font-size: var(--font-size-hero);
     margin-bottom: 0;
+}
+
+.site-nav {
+    display: flex;
+    gap: var(--spacing-small);
+}
+
+.site-nav a {
+    font-size: var(--font-size-body);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-small);
+    }
 }
 
 /* ================================
@@ -284,6 +312,54 @@ hr {
 
 #experience hr {
     margin: var(--spacing-content) 0;
+}
+
+/* ================================
+   Work Page Styles
+   ================================ */
+
+.work-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.work-content h1 {
+    font-size: var(--font-size-hero);
+    margin-bottom: var(--spacing-section);
+}
+
+.work-entry {
+    margin-bottom: var(--spacing-section);
+}
+
+.work-entry:last-child {
+    margin-bottom: 0;
+}
+
+.work-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: var(--spacing-small);
+    background-color: var(--color-divider);
+}
+
+.work-entry h3 {
+    font-size: var(--font-size-role);
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.work-date {
+    font-size: var(--font-size-body);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.work-description {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    margin-bottom: 0;
 }
 
 /* ================================
