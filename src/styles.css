@@ -649,8 +649,8 @@ hr {
     background: var(--color-accent);
     border: none;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     display: none;
     align-items: center;
