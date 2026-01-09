@@ -324,6 +324,7 @@ hr {
 
 #writing p {
     margin-bottom: var(--spacing-small);
+    color: var(--color-text-secondary);
 }
 
 /* Experience Column */
