@@ -2,6 +2,8 @@
    Font Face Declarations
    ================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 @font-face {
     font-family: 'Berkeley Mono';
     src: url('fonts/BerkeleyMonoTrial-Regular.otf') format('opentype');
@@ -24,6 +26,7 @@
 
     /* Typography */
     --font-mono: 'Berkeley Mono', 'Berkeley Mono Variable', 'IBM Plex Mono', 'Courier Prime', 'Courier New', monospace;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Font Sizes */
     --font-size-hero: 36px;
@@ -132,6 +135,7 @@ body {
    ================================ */
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
     font-weight: 400;
     line-height: var(--line-height-tight);
 }
@@ -213,6 +217,7 @@ hr {
 }
 
 .site-nav a {
+    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
     text-decoration: none;
@@ -268,6 +273,7 @@ hr {
 }
 
 #writing em {
+    font-family: var(--font-sans);
     display: block;
     color: var(--color-text-secondary);
     font-size: var(--font-size-meta);
@@ -296,16 +302,19 @@ hr {
 }
 
 .experience-title {
+    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
 }
 
 .experience-date {
+    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
 }
 
 .experience-company {
+    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-secondary);
 }
@@ -351,6 +360,7 @@ hr {
 }
 
 .work-date {
+    font-family: var(--font-sans);
     font-size: var(--font-size-body);
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-xs);
@@ -380,11 +390,13 @@ hr {
 }
 
 .footer-links a {
+    font-family: var(--font-sans);
     font-size: var(--font-size-small);
     color: var(--color-text-secondary);
 }
 
 .footer-updated {
+    font-family: var(--font-sans);
     font-size: var(--font-size-meta);
     color: var(--color-text-secondary);
 }
