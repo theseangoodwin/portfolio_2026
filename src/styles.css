@@ -778,6 +778,7 @@ hr {
     font-size: 14px;
     color: white;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    transform: translateY(-4px);
 }
 
 @media (max-width: 768px) {
