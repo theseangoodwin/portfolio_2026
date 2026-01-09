@@ -173,6 +173,9 @@
         const playButton = document.getElementById('play-button');
         const videoCircle = document.querySelector('.video-player-circle');
 
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+
         playButton.addEventListener('click', function(e) {
             e.stopPropagation();
             videoPlayer.play();
@@ -181,13 +184,73 @@
         });
 
         videoPlayer.addEventListener('click', function(e) {
-            if (!videoPlayer.paused) {
+            if (!videoPlayer.paused && !isDragging) {
                 videoPlayer.pause();
                 videoPlayer.currentTime = 0;
                 videoOverlay.classList.remove('hidden');
                 videoCircle.classList.remove('expanded');
+
+                // Reset position
+                videoCircle.style.left = '50%';
+                videoCircle.style.top = '40px';
+                videoCircle.style.transform = 'translateX(-50%)';
             }
         });
+
+        // Drag functionality
+        function startDrag(e) {
+            if (!videoCircle.classList.contains('expanded')) return;
+
+            isDragging = true;
+            videoCircle.classList.add('dragging');
+
+            const rect = videoCircle.getBoundingClientRect();
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+            dragOffset.x = clientX - rect.left - rect.width / 2;
+            dragOffset.y = clientY - rect.top - rect.height / 2;
+
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+            const rect = videoCircle.getBoundingClientRect();
+            const radius = rect.width / 2;
+            const margin = 40;
+
+            let x = clientX - dragOffset.x;
+            let y = clientY - dragOffset.y;
+
+            // Constrain to viewport with margin
+            x = Math.max(margin + radius, Math.min(window.innerWidth - margin - radius, x));
+            y = Math.max(margin + radius, Math.min(window.innerHeight - margin - radius, y));
+
+            videoCircle.style.left = x + 'px';
+            videoCircle.style.top = y + 'px';
+            videoCircle.style.transform = 'translate(-50%, -50%)';
+
+            e.preventDefault();
+        }
+
+        function endDrag(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            videoCircle.classList.remove('dragging');
+        }
+
+        videoCircle.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', endDrag);
+
+        videoCircle.addEventListener('touchstart', startDrag);
+        document.addEventListener('touchmove', drag, { passive: false });
+        document.addEventListener('touchend', endDrag);
     </script>
 </body>
 </html>

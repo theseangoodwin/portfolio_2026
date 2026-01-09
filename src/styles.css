@@ -621,13 +621,22 @@ hr {
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    transition: width 0.4s ease, height 0.4s ease, top 0.4s ease;
+    transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease, transform 0.4s ease;
 }
 
 .video-player-circle.expanded {
     width: 200px;
     height: 200px;
     top: 60px;
+}
+
+.video-player-circle.dragging {
+    cursor: grabbing;
+    transition: none;
+}
+
+.video-player-circle.expanded:not(.dragging) {
+    cursor: grab;
 }
 
 .video-player-circle video {
