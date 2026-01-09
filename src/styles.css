@@ -683,10 +683,11 @@ hr {
     height: 60px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
     transition: transform 0.2s ease;
+    transform: scale(0.75) translateX(2px);
 }
 
 .play-button-wrapper:hover .play-icon {
-    transform: scale(1.1);
+    transform: scale(0.825) translateX(2px);
 }
 
 .play-icon svg {

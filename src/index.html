@@ -198,6 +198,18 @@
             }
         });
 
+        // Reset when video ends
+        videoPlayer.addEventListener('ended', function() {
+            videoPlayer.currentTime = 0;
+            videoOverlay.classList.remove('hidden');
+            videoCircle.classList.remove('expanded');
+
+            // Reset position
+            videoCircle.style.left = '50%';
+            videoCircle.style.top = '40px';
+            videoCircle.style.transform = 'translateX(-50%)';
+        });
+
         // Drag functionality
         function startDrag(e) {
             if (!videoCircle.classList.contains('expanded')) return;
