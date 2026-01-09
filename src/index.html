@@ -67,10 +67,13 @@
             <source src="videos/spiel.mp4" type="video/mp4">
         </video>
         <div class="video-overlay" id="video-overlay">
-            <div class="play-icon" id="play-icon">
-                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
+            <div class="play-button-wrapper" id="play-button">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7z" stroke-linejoin="round" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="video-duration">1:02</div>
             </div>
         </div>
     </div>
@@ -167,15 +170,15 @@
         // Circular video player
         const videoPlayer = document.getElementById('circle-video');
         const videoOverlay = document.getElementById('video-overlay');
-        const playIcon = document.getElementById('play-icon');
+        const playButton = document.getElementById('play-button');
 
-        playIcon.addEventListener('click', function(e) {
+        playButton.addEventListener('click', function(e) {
             e.stopPropagation();
             videoPlayer.play();
             videoOverlay.classList.add('hidden');
         });
 
-        videoPlayer.addEventListener('click', function() {
+        videoPlayer.addEventListener('click', function(e) {
             if (!videoPlayer.paused) {
                 videoPlayer.pause();
                 videoPlayer.currentTime = 0;
