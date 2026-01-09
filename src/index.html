@@ -208,6 +208,7 @@
             videoPlayer.play();
             videoOverlay.classList.add('hidden');
             videoCircle.classList.add('expanded');
+            speedButton.classList.add('visible');
         });
 
         videoPlayer.addEventListener('click', function(e) {
@@ -216,6 +217,7 @@
                 videoPlayer.currentTime = 0;
                 videoOverlay.classList.remove('hidden');
                 videoCircle.classList.remove('expanded');
+                speedButton.classList.remove('visible');
 
                 // Reset position
                 videoCircle.style.left = '50%';
@@ -229,6 +231,7 @@
             videoPlayer.currentTime = 0;
             videoOverlay.classList.remove('hidden');
             videoCircle.classList.remove('expanded');
+            speedButton.classList.remove('visible');
 
             // Reset position
             videoCircle.style.left = '50%';
