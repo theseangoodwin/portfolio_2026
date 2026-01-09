@@ -530,7 +530,7 @@ hr {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        filter: blur(10px);
+        filter: blur(6px);
         transform: translateY(20px);
     }
     to {
@@ -542,12 +542,12 @@ hr {
 
 .fade-in-element {
     opacity: 0;
-    filter: blur(10px);
+    filter: blur(6px);
     transform: translateY(20px);
 }
 
 .fade-in-element.animate {
-    animation: fadeInUp 0.8s ease-out forwards;
+    animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .site-header {
