@@ -21,12 +21,12 @@
 </head>
 <body>
     <div class="container">
-        <header class="site-header">
+        <header class="site-header fade-in-element">
             <a href="index.html" class="site-title">Sean Goodwin</a>
             <nav class="site-nav">
                 <a href="index.html">About</a>
                 <!-- <a href="work.html" class="active">Work</a> -->
-                <a href="bookshelf.html">Bookshelf</a>
+                <!-- <a href="bookshelf.html">Bookshelf</a> -->
                 <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -35,11 +35,11 @@
             </nav>
         </header>
 
-        <main class="work-content">
+        <main class="work-content fade-in-element">
             <!-- WORK_CONTENT -->
         </main>
 
-        <footer class="site-footer">
+        <footer class="site-footer fade-in-element">
             <div class="footer-links">
                 <a href="mailto:seanmgoodwin1@gmail.com">Email</a>
                 <a href="https://www.linkedin.com/in/sean-goodwin-3176a1a8/" target="_blank" rel="noopener">LinkedIn</a>
@@ -119,6 +119,14 @@
             year: 'numeric',
             month: 'long',
             day: 'numeric'
+        });
+
+        // Page transition animations
+        window.addEventListener('load', function() {
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+            fadeElements.forEach(element => {
+                element.classList.add('animate');
+            });
         });
     </script>
 </body>

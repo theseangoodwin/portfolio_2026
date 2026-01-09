@@ -524,6 +524,87 @@ hr {
 }
 
 /* ================================
+   Page Transitions
+   ================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+.fade-in-element {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+}
+
+.fade-in-element.animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.site-header {
+    animation-delay: 0.1s;
+}
+
+.column:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.column:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.column:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.site-footer {
+    animation-delay: 0.5s;
+}
+
+/* Work page stagger */
+.work-content > h1 {
+    animation-delay: 0.1s;
+}
+
+.work-entry:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.work-entry:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.work-entry:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Bookshelf page stagger */
+.bookshelf-content > h1 {
+    animation-delay: 0.1s;
+}
+
+.book-entry:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.book-entry:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.book-entry:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ================================
    Print Styles
    ================================ */
 

@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="container">
-        <header class="site-header">
+        <header class="site-header fade-in-element">
             <a href="index.html" class="site-title">Sean Goodwin</a>
             <nav class="site-nav">
                 <a href="index.html" class="active">About</a>
@@ -36,20 +36,20 @@
         </header>
 
         <main class="three-column-grid">
-            <section id="about" class="column">
+            <section id="about" class="column fade-in-element">
                 <!-- ABOUT_CONTENT -->
             </section>
 
-            <section id="writing" class="column">
+            <section id="writing" class="column fade-in-element">
                 <!-- WRITING_CONTENT -->
             </section>
 
-            <section id="experience" class="column">
+            <section id="experience" class="column fade-in-element">
                 <!-- EXPERIENCE_CONTENT -->
             </section>
         </main>
 
-        <footer class="site-footer">
+        <footer class="site-footer fade-in-element">
             <div class="footer-links">
                 <a href="mailto:seanmgoodwin1@gmail.com">Email</a>
                 <a href="https://www.linkedin.com/in/sean-goodwin-3176a1a8/" target="_blank" rel="noopener">LinkedIn</a>
@@ -139,6 +139,14 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            });
+        });
+
+        // Page transition animations
+        window.addEventListener('load', function() {
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+            fadeElements.forEach(element => {
+                element.classList.add('animate');
             });
         });
     </script>
