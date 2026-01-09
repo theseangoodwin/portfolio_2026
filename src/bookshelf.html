@@ -187,10 +187,15 @@
             videoPlayer.play();
             videoOverlay.classList.add('hidden');
             videoCircle.classList.add('expanded');
-            speedButton.classList.add('visible');
 
             // Update position after expansion animation
             setTimeout(updateSpeedButtonPosition, 400);
+
+            // Show speed button after 1 second delay with fade-in
+            speedButton.style.display = 'flex';
+            setTimeout(function() {
+                speedButton.classList.add('visible');
+            }, 1000);
         });
 
         videoPlayer.addEventListener('click', function(e) {
@@ -200,6 +205,7 @@
                 videoOverlay.classList.remove('hidden');
                 videoCircle.classList.remove('expanded');
                 speedButton.classList.remove('visible');
+                speedButton.style.display = 'none';
 
                 // Reset position
                 videoCircle.style.left = '50%';
@@ -214,6 +220,7 @@
             videoOverlay.classList.remove('hidden');
             videoCircle.classList.remove('expanded');
             speedButton.classList.remove('visible');
+            speedButton.style.display = 'none';
 
             // Reset position
             videoCircle.style.left = '50%';
