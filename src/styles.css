@@ -17,12 +17,16 @@
    ================================ */
 
 :root {
-    /* Colors - Light Mode (Primary) */
-    --color-bg: #fffcf0;
-    --color-text-primary: #1c1b1a;
-    --color-text-secondary: #666666;
-    --color-accent: #dc3c22;
-    --color-divider: #e8e5dc;
+    /* Colors - Theme-based (will be overridden by JS) */
+    --color-base: #fffcf0;
+    --color-accent: #000000;
+    --color-accent-20: rgba(0, 0, 0, 0.2);
+
+    /* Derived colors */
+    --color-bg: var(--color-base);
+    --color-text-primary: var(--color-accent);
+    --color-text-secondary: var(--color-accent-20);
+    --color-divider: var(--color-accent-20);
 
     /* Typography */
     --font-mono: 'Berkeley Mono', 'Berkeley Mono Variable', 'IBM Plex Mono', 'Courier Prime', 'Courier New', monospace;
@@ -214,6 +218,7 @@ hr {
 .site-nav {
     display: flex;
     gap: var(--spacing-small);
+    align-items: center;
 }
 
 .site-nav a {
@@ -226,6 +231,25 @@ hr {
 .site-nav a:hover {
     color: var(--color-accent);
     text-decoration: none;
+}
+
+.theme-switcher {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-left: var(--spacing-xs);
+}
+
+.theme-switcher:hover {
+    transform: scale(1.1);
+}
+
+.theme-switcher:active {
+    transform: scale(0.95);
 }
 
 @media (max-width: 768px) {
