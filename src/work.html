@@ -22,11 +22,15 @@
 <body>
     <div class="container">
         <header class="site-header">
-            <h1 class="site-title">Sean Goodwin</h1>
+            <a href="index.html" class="site-title">Sean Goodwin</a>
             <nav class="site-nav">
                 <a href="index.html">About</a>
-                <a href="work.html">Work</a>
-                <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme"></button>
+                <a href="work.html" class="active">Work</a>
+                <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                    </svg>
+                </button>
             </nav>
         </header>
 
@@ -36,12 +40,13 @@
 
         <footer class="site-footer">
             <div class="footer-links">
-                <a href="mailto:hello@seangoodwin.com">Email</a>
-                <a href="https://linkedin.com/in/seangoodwin" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://github.com/theseangoodwin" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://twitter.com/seangoodwin" target="_blank" rel="noopener">Twitter</a>
+                <a href="mailto:seanmgoodwin1@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/sean-goodwin-3176a1a8/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
-            <p class="footer-updated">Last updated: <span id="last-updated"></span></p>
+            <div class="footer-bottom">
+                <p class="footer-made-with">Currently made with: Claude Code</p>
+                <p class="footer-updated">Last updated: <span id="last-updated"></span></p>
+            </div>
         </footer>
     </div>
 
@@ -93,9 +98,10 @@
             const savedIndex = localStorage.getItem('themeIndex');
 
             if (savedIndex !== null) {
+                // Use saved theme when navigating between pages
                 applyTheme(parseInt(savedIndex));
             } else {
-                // Random theme on first visit
+                // Random theme on first visit / new session
                 const randomIndex = Math.floor(Math.random() * themes.length);
                 applyTheme(randomIndex);
             }

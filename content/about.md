@@ -1,9 +1,5 @@
 # About
 
-[Placeholder: 4 sentence blurb to be provided]
-
-I'm a product designer currently working at Atlassian. I focus on design systems, AI integration, and user experience. Previously worked at Loom, Twitter, and Brave UX.
-
-[Contact information and links will go here]
+I'm Sean Goodwin, a software designer, lifelong learner, and father. Presently I work for Atlassian as a Principal Product Designer, leading teams developing new AI products. In the past I have worked for Loom (pre-acquisition), Twitter, and small agencies.
 
 ![Desk setup](images/desk.webp)

@@ -99,9 +99,28 @@ if (fs.existsSync(srcImagesDir)) {
     imageCount = imageFiles.length;
 }
 
+// Copy videos directory to dist
+const srcVideosDir = path.join(srcDir, 'videos');
+const distVideosDir = path.join(distDir, 'videos');
+let videoCount = 0;
+if (fs.existsSync(srcVideosDir)) {
+    if (!fs.existsSync(distVideosDir)) {
+        fs.mkdirSync(distVideosDir, { recursive: true });
+    }
+    const videoFiles = fs.readdirSync(srcVideosDir);
+    videoFiles.forEach(file => {
+        fs.copyFileSync(
+            path.join(srcVideosDir, file),
+            path.join(distVideosDir, file)
+        );
+    });
+    videoCount = videoFiles.length;
+}
+
 console.log('✓ Build complete!');
 console.log(`  - Generated: ${distIndexPath}`);
 console.log(`  - Generated: ${distWorkPath}`);
 console.log(`  - Copied: ${distCssPath}`);
 if (fontCount > 0) console.log(`  - Copied: ${fontCount} font file(s)`);
 if (imageCount > 0) console.log(`  - Copied: ${imageCount} image file(s)`);
+if (videoCount > 0) console.log(`  - Copied: ${videoCount} video file(s)`);
