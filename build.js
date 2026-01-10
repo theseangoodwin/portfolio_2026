@@ -124,12 +124,13 @@ try {
     const commitTimestamp = execSync('git log -1 --format=%ci', { encoding: 'utf8' }).trim();
     const date = new Date(commitTimestamp);
     lastCommitDate = date.toLocaleDateString('en-US', {
+        timeZone: 'America/New_York',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
         hour: 'numeric',
         minute: '2-digit'
-    });
+    }) + ' EST';
 } catch (error) {
     lastCommitDate = 'Unknown';
 }
