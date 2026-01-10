@@ -199,6 +199,14 @@
             });
         });
 
+        // Open external links in new tab
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            if (!link.href.includes(window.location.hostname)) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+
         // Circular video player
         const videoPlayer = document.getElementById('circle-video');
         const videoOverlay = document.getElementById('video-overlay');
