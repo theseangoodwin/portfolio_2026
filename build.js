@@ -23,6 +23,39 @@ function convertMarkdown(markdown) {
     return marked.parse(markdown);
 }
 
+// Limit writing entries to a max count and add "view all" link if exceeded
+function limitWritingEntries(markdown, maxEntries = 4, substackUrl = 'https://shippingtoprod.substack.com') {
+    const lines = markdown.split('\n');
+    const headerLine = lines[0]; // # Writing
+    const entries = [];
+    let currentEntry = null;
+
+    // Parse entries (each starts with ###)
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.startsWith('### ')) {
+            if (currentEntry !== null) {
+                entries.push(currentEntry.join('\n'));
+            }
+            currentEntry = [line];
+        } else if (currentEntry !== null) {
+            currentEntry.push(line);
+        }
+    }
+    if (currentEntry !== null) {
+        entries.push(currentEntry.join('\n'));
+    }
+
+    // If more than max entries, limit and add link
+    if (entries.length > maxEntries) {
+        const limitedEntries = entries.slice(0, maxEntries);
+        const viewAllLink = `\n[View all writing →](${substackUrl})\n`;
+        return headerLine + '\n' + limitedEntries.join('\n') + viewAllLink;
+    }
+
+    return markdown;
+}
+
 // Recursively copy directory
 function copyDirectory(src, dest) {
     if (!fs.existsSync(dest)) {
@@ -62,7 +95,8 @@ const writingMarkdown = readMarkdown('writing.md');
 const experienceMarkdown = readMarkdown('experience.md');
 
 const aboutHtml = convertMarkdown(aboutMarkdown);
-const writingHtml = convertMarkdown(writingMarkdown);
+const limitedWritingMarkdown = limitWritingEntries(writingMarkdown);
+const writingHtml = convertMarkdown(limitedWritingMarkdown);
 const experienceHtml = convertMarkdown(experienceMarkdown);
 
 // Inject content into index template
