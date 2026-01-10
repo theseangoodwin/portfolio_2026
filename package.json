@@ -7,10 +7,14 @@
     "dev": "npm run build && npx http-server dist -p 8080 -o",
     "clean": "rm -rf dist"
   },
-  "keywords": ["portfolio", "digital-garden"],
+  "keywords": [
+    "portfolio",
+    "digital-garden"
+  ],
   "author": "Sean Goodwin",
   "license": "MIT",
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "marked": "^11.1.1"
   },
   "devDependencies": {
