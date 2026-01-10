@@ -94,13 +94,6 @@ jobs:
 2. Configure DNS with your domain provider
 3. Enable custom domain in GitHub Pages settings
 
-## Design References
-
-- [Applied Cartography](https://www.jmduke.com/) - Monospace, warm palette, narrow layout
-- [Robin Sloan](https://www.robinsloan.com/) - Restrained, curated directory
-- [Frank Chimero](https://www.frankchimero.com/) - Honest simplicity
-- [Irrational Exuberance](https://lethain.com/) - Content-focused, minimal
-
 ## Color Palette
 
 - Background: `#fffcf0` (warm cream)
