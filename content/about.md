@@ -4,6 +4,6 @@ I'm Sean Goodwin, a software designer, lifelong learner, and father. Presently I
 
 Previously I launched the first AI SKU at Loom in 2023, you can listen to my team and I talk about it on [Dive Club](https://www.youtube.com/watch?v=-ONzMzLHj9I). I write an infrequent newsletter called [Shipping to Prod](https://shippingtoprod.substack.com/), about the process between a new idea and getting it out in the real world.
 
-Work is best for me when it feels like play.
+Work should feel like play.
 
 ![Desk setup](images/desk.webp)

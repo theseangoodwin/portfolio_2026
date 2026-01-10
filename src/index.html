@@ -57,12 +57,18 @@
         <footer class="site-footer fade-in-element">
             <div class="footer-links">
                 <a href="mailto:seanmgoodwin1@gmail.com">Email</a>
-                <a href="https://www.linkedin.com/in/sean-goodwin-3176a1a8/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/sean-goodwin-3176a1a8/">LinkedIn</a>
+                <a href="https://shippingtoprod.substack.com/">Newsletter</a>
+                <a href="https://x.com/TheSeanGoodwin">X</a>
             </div>
-            <div class="footer-bottom">
-                <p class="footer-made-with">Currently made with: Claude Code</p>
-                <p class="footer-updated">Last updated: <span id="last-updated"></span></p>
+            <p class="footer-separator">***</p>
+            <div class="footer-meta">
+                <p class="footer-made-with">Made with Claude</p>
+                <p class="footer-hosting">Hosted on Vercel</p>
+                <p class="footer-commit">Last commit: <span id="last-commit"><!-- LAST_COMMIT --></span></p>
             </div>
+            <p class="footer-fonts">Typeface credit: Argent Pixel by Connary Fagen, Berkeley Mono by US Graphics Company</p>
+            <p class="footer-weather">Washington, DC: <span id="weather-temp" class="clickable">--°F</span></p>
         </footer>
     </div>
 
@@ -87,6 +93,12 @@
     <button class="playback-speed-button" id="playback-speed-button">1.2×</button>
 
     <script>
+        // Disable scroll restoration to prevent layout shift on refresh
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
         // Color Themes
         const themes = [
             { name: 'Beige Classic', base: '#fffcf0', accent: '#000000' },
@@ -153,15 +165,16 @@
             applyTheme(nextIndex);
         }
 
-        // Initialize theme on page load
+        // Initialize theme on page load - cycle to next theme on each load
         function initTheme() {
             const savedIndex = localStorage.getItem('themeIndex');
 
             if (savedIndex !== null) {
-                // Use saved theme when navigating between pages
-                applyTheme(parseInt(savedIndex));
+                // Advance to next theme on each page load
+                const nextIndex = (parseInt(savedIndex) + 1) % themes.length;
+                applyTheme(nextIndex);
             } else {
-                // Random theme on first visit / new session
+                // Random theme on first visit
                 const randomIndex = Math.floor(Math.random() * themes.length);
                 applyTheme(randomIndex);
             }
@@ -172,13 +185,6 @@
 
         // Initialize theme
         initTheme();
-
-        // Set last updated date
-        document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
 
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -206,6 +212,40 @@
                 link.setAttribute('rel', 'noopener noreferrer');
             }
         });
+
+        // Weather for Washington, DC
+        let tempCelsius = null;
+        let showFahrenheit = true;
+        const weatherEl = document.getElementById('weather-temp');
+
+        async function fetchWeather() {
+            try {
+                // Washington, DC coordinates
+                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=38.9072&longitude=-77.0369&current_weather=true');
+                const data = await response.json();
+                tempCelsius = data.current_weather.temperature;
+                updateWeatherDisplay();
+            } catch (error) {
+                weatherEl.textContent = '--°F';
+            }
+        }
+
+        function updateWeatherDisplay() {
+            if (tempCelsius === null) return;
+            if (showFahrenheit) {
+                const tempF = Math.round((tempCelsius * 9/5) + 32);
+                weatherEl.textContent = tempF + '°F';
+            } else {
+                weatherEl.textContent = Math.round(tempCelsius) + '°C';
+            }
+        }
+
+        weatherEl.addEventListener('click', function() {
+            showFahrenheit = !showFahrenheit;
+            updateWeatherDisplay();
+        });
+
+        fetchWeather();
 
         // Circular video player
         const videoPlayer = document.getElementById('circle-video');

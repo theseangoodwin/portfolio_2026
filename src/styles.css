@@ -2,11 +2,18 @@
    Font Face Declarations
    ================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
 @font-face {
     font-family: 'Berkeley Mono';
     src: url('fonts/BerkeleyMonoTrial-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Argent Pixel';
+    src: url('fonts/ArgentPixel-Regular.woff2') format('woff2'),
+         url('fonts/ArgentPixel-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -30,11 +37,11 @@
 
     /* Typography */
     --font-mono: 'Berkeley Mono', 'Berkeley Mono Variable', 'IBM Plex Mono', 'Courier Prime', 'Courier New', monospace;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-sans: 'Argent Pixel', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Font Sizes */
-    --font-size-hero: 36px;
-    --font-size-section-header: 26px;
+    --font-size-hero: 42px;
+    --font-size-section-header: 36px;
     --font-size-role: 19px;
     --font-size-body: 14px;
     --font-size-small: 15px;
@@ -141,12 +148,12 @@ body {
    ================================ */
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: 'Argent Pixel', var(--font-sans);
     font-weight: 400;
     line-height: var(--line-height-tight);
 }
 
 h1 {
-    font-family: var(--font-sans);
     font-size: var(--font-size-hero);
     margin-bottom: var(--spacing-xs);
 }
@@ -169,13 +176,14 @@ p {
 
 /* Links */
 a {
+    font-family: var(--font-sans);
     color: var(--color-accent);
     text-decoration: underline;
     transition: opacity 0.2s ease;
 }
 
 a::after {
-    content: ' ↗︎';
+    content: ' ↗';
 }
 
 a:hover {
@@ -216,6 +224,7 @@ hr {
 }
 
 .site-title {
+    font-family: var(--font-mono);
     font-size: var(--font-size-body);
     margin-bottom: 0;
     color: var(--color-text-primary);
@@ -238,6 +247,7 @@ hr {
 }
 
 .site-nav a {
+    font-family: var(--font-mono);
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
     text-decoration: none;
@@ -312,13 +322,73 @@ hr {
     border-radius: 12px;
 }
 
+/* About responsive layout */
+.about-layout {
+    display: block;
+}
+
+.about-text p:first-child {
+    margin-top: 0;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-image p {
+    margin: 0;
+}
+
+/* Tablet: 50/50 side-by-side layout */
+@media (max-width: 1024px) {
+    .about-layout {
+        display: flex;
+        gap: var(--spacing-content);
+        align-items: flex-start;
+    }
+
+    .about-text {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .about-text p:first-child {
+        margin-top: 0;
+    }
+
+    .about-image {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .about-image img,
+    #about img {
+        margin-top: 0;
+    }
+
+    .about-image p {
+        margin-top: 0;
+    }
+}
+
+/* Small mobile: stack vertically */
+@media (max-width: 600px) {
+    .about-layout {
+        display: block;
+    }
+
+    .about-image img {
+        margin-top: var(--spacing-content);
+    }
+}
+
 /* Writing Column */
 #writing h1 {
     margin-bottom: var(--spacing-content);
 }
 
 #writing h3 {
-    font-size: var(--font-size-body);
+    font-size: 18px;
     margin-top: var(--spacing-content);
     margin-bottom: 5px;
 }
@@ -338,6 +408,11 @@ hr {
 #writing p {
     margin-bottom: var(--spacing-small);
     color: var(--color-text-secondary);
+}
+
+#writing .view-all-link {
+    display: inline-block;
+    margin-top: var(--spacing-small);
 }
 
 /* Experience Column */
@@ -496,44 +571,82 @@ hr {
 }
 
 /* ================================
-   Footer
+   Footer / Colophon
    ================================ */
 
 .site-footer {
     margin-top: var(--spacing-section);
-    padding-top: var(--spacing-content);
+    padding-top: var(--spacing-small);
     border-top: 1px solid var(--color-divider);
 }
 
 .footer-links {
     display: flex;
     gap: var(--spacing-small);
-    flex-wrap: wrap;
-    margin-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-xs);
 }
 
 .footer-links a {
-    font-size: var(--font-size-small);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    color: var(--color-text-primary);
+}
+
+.footer-separator {
+    font-size: 12px;
     color: var(--color-text-secondary);
+    margin: var(--spacing-small) 0;
+    letter-spacing: 0.3em;
 }
 
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: var(--spacing-small);
+.footer-meta {
+    margin-bottom: var(--spacing-xs);
 }
 
-.footer-made-with {
-    font-size: var(--font-size-meta);
+.footer-meta p {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    display: inline;
+}
+
+.footer-meta p::after {
+    content: ' · ';
+    font-size: 18px;
+}
+
+.footer-meta p:last-child::after {
+    content: none;
+}
+
+.footer-meta .clickable {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer-meta .clickable:hover {
+    opacity: 0.7;
+}
+
+.footer-fonts {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.footer-weather {
+    font-size: 12px;
     color: var(--color-text-secondary);
     margin: 0;
 }
 
-.footer-updated {
-    font-size: var(--font-size-meta);
-    color: var(--color-text-secondary);
-    margin: 0;
+.footer-weather .clickable {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer-weather .clickable:hover {
+    opacity: 0.7;
 }
 
 /* ================================

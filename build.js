@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
+const { execSync } = require('child_process');
 
 // Configuration
 const contentDir = path.join(__dirname, 'content');
@@ -23,8 +24,25 @@ function convertMarkdown(markdown) {
     return marked.parse(markdown);
 }
 
+// Wrap about content for responsive layout (text and image side-by-side on tablet)
+function wrapAboutContent(html) {
+    // Split content: h1 header, text paragraphs, and image paragraph
+    const imgMatch = html.match(/<p><img[^>]+><\/p>/);
+    if (!imgMatch) return html;
+
+    const h1Match = html.match(/<h1>.*?<\/h1>/);
+    const h1Content = h1Match ? h1Match[0] : '';
+    const afterH1 = h1Match ? html.substring(html.indexOf(h1Content) + h1Content.length) : html;
+
+    const imgIndex = afterH1.indexOf(imgMatch[0]);
+    const textContent = afterH1.substring(0, imgIndex).trim();
+    const imgContent = imgMatch[0];
+
+    return `${h1Content}<div class="about-layout"><div class="about-text">${textContent}</div><div class="about-image">${imgContent}</div></div>`;
+}
+
 // Limit writing entries to a max count and add "view all" link if exceeded
-function limitWritingEntries(markdown, maxEntries = 4, substackUrl = 'https://shippingtoprod.substack.com') {
+function limitWritingEntries(markdown, maxEntries = 3, substackUrl = 'https://shippingtoprod.substack.com') {
     const lines = markdown.split('\n');
     const headerLine = lines[0]; // # Writing
     const entries = [];
@@ -49,7 +67,7 @@ function limitWritingEntries(markdown, maxEntries = 4, substackUrl = 'https://sh
     // If more than max entries, limit and add link
     if (entries.length > maxEntries) {
         const limitedEntries = entries.slice(0, maxEntries);
-        const viewAllLink = `\n[View all writing →](${substackUrl})\n`;
+        const viewAllLink = `\n<a href="${substackUrl}" class="view-all-link">View all writing</a>\n`;
         return headerLine + '\n' + limitedEntries.join('\n') + viewAllLink;
     }
 
@@ -94,15 +112,33 @@ const aboutMarkdown = readMarkdown('about.md');
 const writingMarkdown = readMarkdown('writing.md');
 const experienceMarkdown = readMarkdown('experience.md');
 
-const aboutHtml = convertMarkdown(aboutMarkdown);
+const aboutHtmlRaw = convertMarkdown(aboutMarkdown);
+const aboutHtml = wrapAboutContent(aboutHtmlRaw);
 const limitedWritingMarkdown = limitWritingEntries(writingMarkdown);
 const writingHtml = convertMarkdown(limitedWritingMarkdown);
 const experienceHtml = convertMarkdown(experienceMarkdown);
+
+// Get last commit date
+let lastCommitDate = '';
+try {
+    const commitTimestamp = execSync('git log -1 --format=%ci', { encoding: 'utf8' }).trim();
+    const date = new Date(commitTimestamp);
+    lastCommitDate = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+    });
+} catch (error) {
+    lastCommitDate = 'Unknown';
+}
 
 // Inject content into index template
 indexHtml = indexHtml.replace('<!-- ABOUT_CONTENT -->', aboutHtml);
 indexHtml = indexHtml.replace('<!-- WRITING_CONTENT -->', writingHtml);
 indexHtml = indexHtml.replace('<!-- EXPERIENCE_CONTENT -->', experienceHtml);
+indexHtml = indexHtml.replace('<!-- LAST_COMMIT -->', lastCommitDate);
 
 // Write index.html to dist
 const distIndexPath = path.join(distDir, 'index.html');
