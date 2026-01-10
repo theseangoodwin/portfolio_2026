@@ -65,7 +65,7 @@
 @media (max-width: 768px) {
     :root {
         --font-size-hero: 28px;
-        --font-size-section-header: 22px;
+        --font-size-section-header: 28px;
         --font-size-role: 17px;
         --font-size-body: 14px;
         --spacing-section: 60px;
