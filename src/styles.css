@@ -786,7 +786,7 @@ hr {
 .playback-speed-button {
     position: fixed;
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 22px;
     color: var(--color-base);
     background: var(--color-accent);
     border: none;
@@ -821,7 +821,7 @@ hr {
 
 @media (max-width: 768px) {
     .playback-speed-button {
-        font-size: 14px;
+        font-size: 18px;
     }
 }
 
