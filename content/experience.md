@@ -2,6 +2,14 @@
 
 <div class="experience-entry">
 <div class="experience-title-row">
+<span class="experience-title">Senior Staff Product Designer</span>
+<span class="experience-date">2026-Present</span>
+</div>
+<div class="experience-company">Harvey</div>
+</div>
+
+<div class="experience-entry">
+<div class="experience-title-row">
 <span class="experience-title">Principal Product Designer</span>
 <span class="experience-date">2025-2026</span>
 </div>
