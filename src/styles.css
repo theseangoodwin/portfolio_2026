@@ -85,6 +85,7 @@
 }
 
 html {
+    background-color: var(--color-bg);
     scroll-behavior: smooth;
     overscroll-behavior-y: none;
     scroll-padding-top: calc(var(--header-height) + env(safe-area-inset-top, 0px));
@@ -236,6 +237,29 @@ hr {
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     mask-image: linear-gradient(to bottom, black 55%, rgb(0 0 0 / 0.85) 70%, rgb(0 0 0 / 0.35) 87%, transparent);
+}
+
+/* Safari can sample page content outside the sticky backdrop layer. */
+@supports (-webkit-touch-callout: none) {
+    @media (hover: none) and (pointer: coarse) {
+        body {
+            background-image: radial-gradient(
+                circle at center,
+                color-mix(in srgb, var(--color-bg) 95%, black) 0.75px,
+                transparent 1px
+            );
+            background-size: 5px 5px;
+        }
+
+        .site-header::before {
+            top: calc(-1 * env(safe-area-inset-top, 0px));
+            background-image: linear-gradient(
+                to bottom,
+                var(--color-bg),
+                transparent calc(env(safe-area-inset-top, 0px) + 24px)
+            );
+        }
+    }
 }
 
 
