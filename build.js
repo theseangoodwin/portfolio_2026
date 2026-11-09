@@ -160,6 +160,8 @@ const srcCssPath = path.join(srcDir, 'styles.css');
 const distCssPath = path.join(distDir, 'styles.css');
 fs.copyFileSync(srcCssPath, distCssPath);
 
+fs.copyFileSync(path.join(srcDir, 'background.js'), path.join(distDir, 'background.js'));
+
 // Copy fonts directory to dist
 const srcFontsDir = path.join(srcDir, 'fonts');
 const distFontsDir = path.join(distDir, 'fonts');

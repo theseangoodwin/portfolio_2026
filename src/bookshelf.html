@@ -17,9 +17,11 @@
     <meta name="twitter:description" content="Books I've read">
 
     <title>Sean Goodwin - Bookshelf</title>
-    <link rel="stylesheet" href="styles.css?v=soft-header-blur">
+    <link rel="stylesheet" href="styles.css?v=tighter-mobile-nav">
 </head>
 <body>
+    <canvas class="site-background" aria-hidden="true"></canvas>
+    <script defer src="background.js?v=gentle-warp"></script>
     <div class="container">
         <header class="site-header">
             <a href="index.html" class="site-title">Sean Goodwin</a>
@@ -29,11 +31,6 @@
                 <a href="index.html#experience">Experience</a>
                 <!-- <a href="work.html">Work</a> -->
                 <!-- <a href="bookshelf.html" class="active">Bookshelf</a> -->
-                <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                    </svg>
-                </button>
             </nav>
         </header>
 
@@ -71,6 +68,12 @@
 
     <!-- Playback Speed Button -->
     <button class="playback-speed-button" id="playback-speed-button">1.2×</button>
+
+    <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+        </svg>
+    </button>
 
     <script>
         // Color Themes

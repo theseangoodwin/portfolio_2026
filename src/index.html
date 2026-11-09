@@ -17,24 +17,20 @@
     <meta name="twitter:description" content="I'm Sean Goodwin, a software designer, lifelong learner, and father.">
 
     <title>Sean Goodwin</title>
-    <link rel="stylesheet" href="styles.css?v=collage-layer-motion">
+    <link rel="stylesheet" href="styles.css?v=mobile-nav-24px-gap">
 </head>
 <body>
+    <canvas class="site-background" aria-hidden="true"></canvas>
+    <script defer src="background.js?v=gentle-warp"></script>
     <div class="container">
         <header class="site-header">
-            <a href="index.html" class="site-title site-title--scroll">Sean Goodwin</a>
+            <a href="index.html" class="site-title site-title--scroll" aria-label="Sean Goodwin">Sean Goodwin</a>
             <nav class="site-nav site-nav--sections">
-                <span class="nav-dot" aria-hidden="true"></span>
-                <a href="#about" aria-current="location">About</a>
-                <a href="#writing">Writing</a>
-                <a href="#experience">Experience</a>
+                <a href="#about" aria-current="location" aria-label="About">About</a>
+                <a href="#writing" aria-label="Writing">Writing</a>
+                <a href="#experience" aria-label="Experience">Experience</a>
                 <!-- <a href="work.html">Work</a> -->
                 <!-- <a href="bookshelf.html">Bookshelf</a> -->
-                <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                    </svg>
-                </button>
             </nav>
         </header>
 
@@ -88,6 +84,12 @@
 
     <!-- Playback Speed Button -->
     <button class="playback-speed-button" id="playback-speed-button">1.2×</button>
+
+    <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+        </svg>
+    </button>
 
     <script>
         // Disable scroll restoration to prevent layout shift on refresh
@@ -400,10 +402,49 @@
         const siteHeader = document.querySelector('.site-header');
         const aboutHeading = document.querySelector('#about h1');
         const sectionNav = siteHeader.querySelector('.site-nav');
-        const navDot = sectionNav.querySelector('.nav-dot');
         const sectionLinks = [...sectionNav.querySelectorAll('a[href^="#"]')];
         const sections = sectionLinks.map(link => document.querySelector(link.hash));
         let activeSectionIndex = 0;
+        let navigatingToSection = false;
+        let navigationTimeout;
+        let stopSectionScramble;
+        let stopNameScramble;
+        const nameLabel = aboutHeading.textContent;
+        aboutHeading.setAttribute('aria-label', nameLabel);
+        const scrambleCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*+-=?';
+
+        function scrambleText(element, label, duration = 500) {
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const startedAt = performance.now();
+            let frame;
+            let lastUpdate = -40;
+
+            function tick(now) {
+                const elapsed = now - startedAt;
+                if (elapsed >= duration) {
+                    element.textContent = label;
+                    return;
+                }
+
+                if (elapsed - lastUpdate >= 40) {
+                    const revealed = Math.floor(elapsed / duration * label.length);
+                    const suffix = Array.from(label.slice(revealed), character =>
+                        character === ' ' ? character : scrambleCharacters[Math.floor(Math.random() * scrambleCharacters.length)]
+                    ).join('');
+                    element.textContent = label.slice(0, revealed) + suffix;
+                    lastUpdate = elapsed;
+                }
+
+                frame = requestAnimationFrame(tick);
+            }
+
+            frame = requestAnimationFrame(tick);
+            return () => {
+                cancelAnimationFrame(frame);
+                element.textContent = label;
+            };
+        }
 
         function updateHeader() {
             const headerBottom = siteHeader.getBoundingClientRect().bottom;
@@ -411,32 +452,52 @@
             const headingTop = headingBottom - aboutHeading.offsetHeight;
 
             const showNavTitle = headingTop < headerBottom - 1;
-            aboutHeading.classList.toggle('is-leaving', showNavTitle);
-            siteTitle.classList.toggle('is-visible', showNavTitle);
+            if (showNavTitle !== siteTitle.classList.contains('is-visible')) {
+                aboutHeading.classList.toggle('is-leaving', showNavTitle);
+                siteTitle.classList.toggle('is-visible', showNavTitle);
+                stopNameScramble?.();
+                stopNameScramble = scrambleText(showNavTitle ? siteTitle : aboutHeading, nameLabel, 350);
+            }
 
             const reachedBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight;
             const sectionIndex = reachedBottom && window.scrollY > 0
                 ? sections.length - 1
                 : Math.max(0, sections.findLastIndex(section => section.getBoundingClientRect().top <= headerBottom + 2));
 
-            if (sectionIndex !== activeSectionIndex) {
-                sectionLinks[activeSectionIndex].removeAttribute('aria-current');
-                sectionLinks[sectionIndex].setAttribute('aria-current', 'location');
-                activeSectionIndex = sectionIndex;
-                positionNavDot();
-            }
+            if (!navigatingToSection) setActiveSection(sectionIndex);
         }
 
-        function positionNavDot() {
-            const link = sectionLinks[activeSectionIndex];
-            const x = link.offsetLeft - 11;
-            const y = link.offsetTop + (link.offsetHeight - 5) / 2;
-            navDot.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+        function setActiveSection(sectionIndex) {
+            if (sectionIndex === activeSectionIndex) return;
+
+            const previousLink = sectionLinks[activeSectionIndex];
+            const activeLink = sectionLinks[sectionIndex];
+            previousLink.removeAttribute('aria-current');
+            activeLink.setAttribute('aria-current', 'location');
+            stopSectionScramble?.();
+            stopSectionScramble = scrambleText(activeLink, activeLink.getAttribute('aria-label'));
+            activeSectionIndex = sectionIndex;
         }
 
-        new ResizeObserver(positionNavDot).observe(sectionNav);
-        positionNavDot();
+        function finishSectionNavigation() {
+            if (!navigatingToSection) return;
+            clearTimeout(navigationTimeout);
+            navigatingToSection = false;
+            updateHeader();
+        }
 
+        sectionLinks.forEach((link, index) => {
+            link.addEventListener('click', event => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+                clearTimeout(navigationTimeout);
+                navigatingToSection = true;
+                setActiveSection(index);
+                navigationTimeout = setTimeout(finishSectionNavigation, 1200);
+            });
+        });
+
+        document.addEventListener('scrollend', finishSectionNavigation);
         window.addEventListener('scroll', updateHeader, { passive: true });
         window.addEventListener('resize', updateHeader);
         window.addEventListener('pageshow', updateHeader);
