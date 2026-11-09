@@ -87,7 +87,7 @@
 html {
     scroll-behavior: smooth;
     overscroll-behavior-y: none;
-    scroll-padding-top: var(--header-height);
+    scroll-padding-top: calc(var(--header-height) + env(safe-area-inset-top, 0px));
 }
 
 body {
@@ -130,7 +130,9 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 20px 40px;
+        padding: 0 20px max(40px, env(safe-area-inset-bottom));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
     }
 }
 
@@ -211,7 +213,8 @@ hr {
     position: sticky;
     top: 0;
     z-index: 10;
-    min-height: var(--header-height);
+    min-height: calc(var(--header-height) + env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
     flex-wrap: wrap;
     align-content: center;
     gap: var(--spacing-small);
@@ -960,8 +963,8 @@ hr {
     .video-player-circle {
         width: 88px;
         height: 88px;
-        bottom: 16px;
-        left: 16px;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        left: max(16px, env(safe-area-inset-left));
     }
 
     .video-player-circle.expanded {
@@ -1005,7 +1008,8 @@ hr {
     }
 
     .container {
-        padding-inline: 24px;
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
     }
 
     .site-header {
