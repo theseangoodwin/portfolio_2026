@@ -243,7 +243,6 @@ hr {
 @supports (-webkit-touch-callout: none) {
     @media (hover: none) and (pointer: coarse) {
         body {
-            --safari-status-bar-clip: max(48px, env(safe-area-inset-top, 0px));
             position: relative;
             background-image: radial-gradient(
                 circle at center,
@@ -265,9 +264,15 @@ hr {
             position: absolute;
         }
 
-        .container > main,
-        .container > .site-footer {
-            clip-path: inset(calc(var(--safari-content-clip, -100px) + var(--safari-status-bar-clip)) -100vw -100px);
+        .site-header {
+            width: 100vw;
+            margin-inline: calc((100% - 100vw) / 2);
+            padding-inline: max(20px, env(safe-area-inset-left), env(safe-area-inset-right));
+            background-color: var(--color-bg);
+        }
+
+        .site-header::before {
+            content: none;
         }
     }
 }
