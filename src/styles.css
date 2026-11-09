@@ -243,6 +243,7 @@ hr {
 @supports (-webkit-touch-callout: none) {
     @media (hover: none) and (pointer: coarse) {
         body {
+            position: relative;
             background-image: radial-gradient(
                 circle at center,
                 color-mix(in srgb, var(--color-bg) 95%, black) 0.75px,
@@ -251,11 +252,23 @@ hr {
             background-size: 5px 5px;
         }
 
+        .site-background-layer {
+            position: absolute;
+            inset: 0;
+            overflow: clip;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .site-background {
+            position: absolute;
+        }
+
         .site-header::before {
             top: calc(-1 * env(safe-area-inset-top, 0px));
             background-image: linear-gradient(
                 to bottom,
-                var(--color-bg),
+                var(--color-bg) env(safe-area-inset-top, 0px),
                 transparent calc(env(safe-area-inset-top, 0px) + 24px)
             );
         }

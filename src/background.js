@@ -71,6 +71,7 @@ if (gl) {
 
         let pixelRatio;
         let canvasBottom;
+        let followsScroll;
         let target = { x: 0, y: 0 };
         let pointer = target;
         let strength = 0;
@@ -81,6 +82,8 @@ if (gl) {
         function draw(now) {
             if (reducedMotion.matches || now - lastDraw >= 32) {
                 lastDraw = now;
+                const scrollY = window.scrollY;
+                if (followsScroll) canvas.style.transform = `translateY(${scrollY}px)`;
                 pointer = {
                     x: pointer.x + (target.x - pointer.x) * .2,
                     y: pointer.y + (target.y - pointer.y) * .2,
@@ -89,7 +92,7 @@ if (gl) {
                 gl.uniform2f(uniforms.pointer, pointer.x * pixelRatio, (canvasBottom - pointer.y) * pixelRatio);
                 gl.uniform1f(uniforms.time, reducedMotion.matches ? 0 : now / 1000);
                 gl.uniform1f(uniforms.influence, reducedMotion.matches ? 0 : strength);
-                gl.uniform1f(uniforms.scrollOffset, window.scrollY * pixelRatio);
+                gl.uniform1f(uniforms.scrollOffset, scrollY * pixelRatio);
                 gl.drawArrays(gl.TRIANGLES, 0, 3);
             }
             if (!reducedMotion.matches) frame = requestAnimationFrame(draw);
@@ -101,6 +104,8 @@ if (gl) {
             const rgb = color.slice(1).match(/.{2}/g).map(channel => parseInt(channel, 16) / 255);
             gl.uniform3f(uniforms.base, ...rgb);
             pixelRatio = Math.min(devicePixelRatio, 1.5);
+            followsScroll = getComputedStyle(canvas).position === 'absolute';
+            canvas.style.transform = followsScroll ? `translateY(${window.scrollY}px)` : '';
             canvasBottom = canvas.getBoundingClientRect().bottom;
             canvas.width = Math.round(canvas.clientWidth * pixelRatio);
             canvas.height = Math.round(canvas.clientHeight * pixelRatio);
