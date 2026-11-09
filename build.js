@@ -24,23 +24,6 @@ function convertMarkdown(markdown) {
     return marked.parse(markdown);
 }
 
-// Wrap about content for responsive layout (text and image side-by-side on tablet)
-function wrapAboutContent(html) {
-    // Split content: h1 header, text paragraphs, and image paragraph
-    const imgMatch = html.match(/<p><img[^>]+><\/p>/);
-    if (!imgMatch) return html;
-
-    const h1Match = html.match(/<h1>.*?<\/h1>/);
-    const h1Content = h1Match ? h1Match[0] : '';
-    const afterH1 = h1Match ? html.substring(html.indexOf(h1Content) + h1Content.length) : html;
-
-    const imgIndex = afterH1.indexOf(imgMatch[0]);
-    const textContent = afterH1.substring(0, imgIndex).trim();
-    const imgContent = imgMatch[0];
-
-    return `${h1Content}<div class="about-layout"><div class="about-text">${textContent}</div><div class="about-image">${imgContent}</div></div>`;
-}
-
 // Limit writing entries to a max count and add "view all" link if exceeded
 function limitWritingEntries(markdown, maxEntries = 3, substackUrl = 'https://shippingtoprod.substack.com') {
     const lines = markdown.split('\n');
@@ -112,11 +95,11 @@ const aboutMarkdown = readMarkdown('about.md');
 const writingMarkdown = readMarkdown('writing.md');
 const experienceMarkdown = readMarkdown('experience.md');
 
-const aboutHtmlRaw = convertMarkdown(aboutMarkdown);
-const aboutHtml = wrapAboutContent(aboutHtmlRaw);
+const aboutHtml = convertMarkdown(aboutMarkdown);
 const limitedWritingMarkdown = limitWritingEntries(writingMarkdown);
 const writingHtml = convertMarkdown(limitedWritingMarkdown);
 const experienceHtml = convertMarkdown(experienceMarkdown);
+const codingTool = process.env.CODING_TOOL || 'Codex';
 
 // Get last commit date
 let lastCommitDate = '';
@@ -140,6 +123,7 @@ indexHtml = indexHtml.replace('<!-- ABOUT_CONTENT -->', aboutHtml);
 indexHtml = indexHtml.replace('<!-- WRITING_CONTENT -->', writingHtml);
 indexHtml = indexHtml.replace('<!-- EXPERIENCE_CONTENT -->', experienceHtml);
 indexHtml = indexHtml.replace('<!-- LAST_COMMIT -->', lastCommitDate);
+indexHtml = indexHtml.replace('<!-- CODING_TOOL -->', codingTool);
 
 // Write index.html to dist
 const distIndexPath = path.join(distDir, 'index.html');
@@ -151,6 +135,8 @@ const workContentHtml = convertMarkdown(workMarkdown);
 
 // Inject content into work template
 workHtml = workHtml.replace('<!-- WORK_CONTENT -->', workContentHtml);
+workHtml = workHtml.replace('<!-- LAST_COMMIT -->', lastCommitDate);
+workHtml = workHtml.replace('<!-- CODING_TOOL -->', codingTool);
 
 // Write work.html to dist
 const distWorkPath = path.join(distDir, 'work.html');
@@ -162,6 +148,8 @@ const bookshelfContentHtml = convertMarkdown(bookshelfMarkdown);
 
 // Inject content into bookshelf template
 bookshelfHtml = bookshelfHtml.replace('<!-- BOOKSHELF_CONTENT -->', bookshelfContentHtml);
+bookshelfHtml = bookshelfHtml.replace('<!-- LAST_COMMIT -->', lastCommitDate);
+bookshelfHtml = bookshelfHtml.replace('<!-- CODING_TOOL -->', codingTool);
 
 // Write bookshelf.html to dist
 const distBookshelfPath = path.join(distDir, 'bookshelf.html');

@@ -17,30 +17,28 @@
     <meta name="twitter:description" content="I'm Sean Goodwin, a software designer, lifelong learner, and father.">
 
     <title>Sean Goodwin</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=collage-layer-motion">
 </head>
 <body>
     <div class="container">
-        <header class="site-header fade-in-element">
-            <a href="index.html" class="site-title">Sean Goodwin</a>
-            <nav class="site-nav">
-                <a href="index.html" class="active">About</a>
+        <header class="site-header">
+            <a href="index.html" class="site-title site-title--scroll">Sean Goodwin</a>
+            <nav class="site-nav site-nav--sections">
+                <span class="nav-dot" aria-hidden="true"></span>
+                <a href="#about" aria-current="location">About</a>
+                <a href="#writing">Writing</a>
+                <a href="#experience">Experience</a>
                 <!-- <a href="work.html">Work</a> -->
                 <!-- <a href="bookshelf.html">Bookshelf</a> -->
                 <button class="theme-switcher" id="theme-switcher" aria-label="Change color theme">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
                     </svg>
-                    <div class="theme-preview">
-                        <div class="theme-preview-square" id="theme-preview-1"></div>
-                        <div class="theme-preview-square" id="theme-preview-2"></div>
-                        <div class="theme-preview-square" id="theme-preview-3"></div>
-                    </div>
                 </button>
             </nav>
         </header>
 
-        <main class="three-column-grid">
+        <main class="home-content">
             <section id="about" class="column fade-in-element">
                 <!-- ABOUT_CONTENT -->
             </section>
@@ -63,9 +61,8 @@
             </div>
             <p class="footer-separator">***</p>
             <div class="footer-meta">
-                <p class="footer-made-with">Made with Claude</p>
                 <p class="footer-hosting">Hosted on Vercel</p>
-                <p class="footer-commit">Last commit: <span id="last-commit"><!-- LAST_COMMIT --></span></p>
+                <p class="footer-commit">Last commit: <span id="last-commit"><!-- LAST_COMMIT --></span> with <!-- CODING_TOOL --></p>
             </div>
             <p class="footer-fonts">Typeface credit: Argent Pixel by Connary Fagen, Berkeley Mono by US Graphics Company</p>
             <p class="footer-weather">Washington, DC: <span id="weather-temp" class="clickable">--°F</span></p>
@@ -102,7 +99,6 @@
         // Color Themes
         const themes = [
             { name: 'Beige Classic', base: '#fffcf0', accent: '#000000' },
-            { name: 'Yellow', base: '#FFD93D', accent: '#1a1a1a' },
             { name: 'Periwinkle', base: '#9BB8E8', accent: '#2d4a7c' },
             { name: 'Charcoal', base: '#5a5a5a', accent: '#e0e0e0' },
             { name: 'Forest', base: '#1e5945', accent: '#a8d5ba' },
@@ -110,7 +106,6 @@
             { name: 'Sage', base: '#b4c4a8', accent: '#3d5a3d' },
             { name: 'Deep Teal', base: '#0f3d30', accent: '#d0e8df' },
             { name: 'Amber', base: '#F5A623', accent: '#5a3d1e' },
-            { name: 'Gold Rush', base: '#FFD301', accent: '#FD022C' },
             { name: 'Desert Sand', base: '#918A45', accent: '#FDF5D4' },
             { name: 'Rust Sky', base: '#945C0F', accent: '#9DC7FF' },
             { name: 'Jade', base: '#336C5D', accent: '#E6DBAE' },
@@ -131,21 +126,6 @@
             return `rgba(${r}, ${g}, ${b}, ${alpha})`;
         }
 
-        // Update theme preview squares
-        function updateThemePreview(currentIndex) {
-            const preview1 = document.getElementById('theme-preview-1');
-            const preview2 = document.getElementById('theme-preview-2');
-            const preview3 = document.getElementById('theme-preview-3');
-
-            const nextIndex1 = (currentIndex + 1) % themes.length;
-            const nextIndex2 = (currentIndex + 2) % themes.length;
-            const nextIndex3 = (currentIndex + 3) % themes.length;
-
-            preview1.style.backgroundColor = themes[nextIndex1].base;
-            preview2.style.backgroundColor = themes[nextIndex2].base;
-            preview3.style.backgroundColor = themes[nextIndex3].base;
-        }
-
         // Apply theme
         function applyTheme(index) {
             const theme = themes[index];
@@ -156,8 +136,9 @@
             root.style.setProperty('--color-accent-50', hexToRgba(theme.accent, 0.5));
 
             currentThemeIndex = index;
-            localStorage.setItem('themeIndex', index);
-            updateThemePreview(index);
+            localStorage.setItem('themeName', theme.name);
+            const nextTheme = themes[(index + 1) % themes.length];
+            root.style.setProperty('--color-next-theme', nextTheme.base);
         }
 
         // Cycle to next theme
@@ -168,11 +149,12 @@
 
         // Initialize theme on page load - cycle to next theme on each load
         function initTheme() {
-            const savedIndex = localStorage.getItem('themeIndex');
+            const savedName = localStorage.getItem('themeName');
+            const savedIndex = themes.findIndex(theme => theme.name === savedName);
 
-            if (savedIndex !== null) {
+            if (savedIndex >= 0) {
                 // Advance to next theme on each page load
-                const nextIndex = (parseInt(savedIndex) + 1) % themes.length;
+                const nextIndex = (savedIndex + 1) % themes.length;
                 applyTheme(nextIndex);
             } else {
                 // Random theme on first visit
@@ -267,7 +249,9 @@
         function updateSpeedButtonPosition() {
             const rect = videoCircle.getBoundingClientRect();
             speedButton.style.left = rect.left + rect.width / 2 + 'px';
-            speedButton.style.top = rect.bottom + 20 + 'px';
+            const below = rect.bottom + 20;
+            const above = rect.top - speedButton.offsetHeight - 20;
+            speedButton.style.top = (below + speedButton.offsetHeight <= window.innerHeight ? below : above) + 'px';
             speedButton.style.transform = 'translateX(-50%)';
         }
 
@@ -308,9 +292,9 @@
                 speedButton.style.display = 'none';
 
                 // Reset position
-                videoCircle.style.left = '50%';
-                videoCircle.style.top = '40px';
-                videoCircle.style.transform = 'translateX(-50%)';
+                videoCircle.style.removeProperty('left');
+                videoCircle.style.removeProperty('top');
+                videoCircle.style.removeProperty('transform');
             }
         });
 
@@ -323,9 +307,9 @@
             speedButton.style.display = 'none';
 
             // Reset position
-            videoCircle.style.left = '50%';
-            videoCircle.style.top = '40px';
-            videoCircle.style.transform = 'translateX(-50%)';
+            videoCircle.style.removeProperty('left');
+            videoCircle.style.removeProperty('top');
+            videoCircle.style.removeProperty('transform');
         });
 
         // Drag functionality
@@ -411,5 +395,73 @@
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+        const siteTitle = document.querySelector('.site-title');
+        const siteHeader = document.querySelector('.site-header');
+        const aboutHeading = document.querySelector('#about h1');
+        const sectionNav = siteHeader.querySelector('.site-nav');
+        const navDot = sectionNav.querySelector('.nav-dot');
+        const sectionLinks = [...sectionNav.querySelectorAll('a[href^="#"]')];
+        const sections = sectionLinks.map(link => document.querySelector(link.hash));
+        let activeSectionIndex = 0;
+
+        function updateHeader() {
+            const headerBottom = siteHeader.getBoundingClientRect().bottom;
+            const headingBottom = aboutHeading.getBoundingClientRect().bottom;
+            const headingTop = headingBottom - aboutHeading.offsetHeight;
+
+            const showNavTitle = headingTop < headerBottom - 1;
+            aboutHeading.classList.toggle('is-leaving', showNavTitle);
+            siteTitle.classList.toggle('is-visible', showNavTitle);
+
+            const reachedBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight;
+            const sectionIndex = reachedBottom && window.scrollY > 0
+                ? sections.length - 1
+                : Math.max(0, sections.findLastIndex(section => section.getBoundingClientRect().top <= headerBottom + 2));
+
+            if (sectionIndex !== activeSectionIndex) {
+                sectionLinks[activeSectionIndex].removeAttribute('aria-current');
+                sectionLinks[sectionIndex].setAttribute('aria-current', 'location');
+                activeSectionIndex = sectionIndex;
+                positionNavDot();
+            }
+        }
+
+        function positionNavDot() {
+            const link = sectionLinks[activeSectionIndex];
+            const x = link.offsetLeft - 11;
+            const y = link.offsetTop + (link.offsetHeight - 5) / 2;
+            navDot.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+        }
+
+        new ResizeObserver(positionNavDot).observe(sectionNav);
+        positionNavDot();
+
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        window.addEventListener('resize', updateHeader);
+        window.addEventListener('pageshow', updateHeader);
+        updateHeader();
+    </script>
+    <script>
+        const photoHover = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+
+        document.querySelectorAll('.collage-photo').forEach(photo => {
+            const card = photo.closest('figure');
+            photo.addEventListener('pointermove', event => {
+                if (!photoHover.matches || event.pointerType !== 'mouse') return;
+
+                const bounds = photo.getBoundingClientRect();
+                const x = (event.clientX - bounds.left) / bounds.width;
+                const y = (event.clientY - bounds.top) / bounds.height;
+                card.style.setProperty('--shine-x', x * 100 + '%');
+                card.style.setProperty('--shine-y', y * 100 + '%');
+                card.style.setProperty('--tilt-x', (0.5 - y) * 6 + 'deg');
+                card.style.setProperty('--tilt-y', (x - 0.5) * 6 + 'deg');
+                card.classList.add('is-hovered');
+            });
+
+            photo.addEventListener('pointerleave', () => card.classList.remove('is-hovered'));
+        });
+    </script>
 </body>
 </html>
