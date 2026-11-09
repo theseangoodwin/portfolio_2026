@@ -1,5 +1,18 @@
 const canvas = document.querySelector('.site-background');
 const gl = canvas.getContext('webgl', { alpha: false, antialias: false });
+// Keep the status bar tint in the document layer even without WebGL.
+if (getComputedStyle(canvas).position === 'absolute') {
+    let tintFrame;
+    function updateTint() {
+        tintFrame = undefined;
+        document.body.style.setProperty('--safari-scroll-y', `${window.scrollY}px`);
+    }
+    window.addEventListener('scroll', () => {
+        if (tintFrame === undefined) tintFrame = requestAnimationFrame(updateTint);
+    }, { passive: true });
+    updateTint();
+}
+
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 if (gl) {

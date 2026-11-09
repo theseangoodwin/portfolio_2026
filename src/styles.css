@@ -264,13 +264,15 @@ hr {
             position: absolute;
         }
 
-        .site-header::before {
-            top: calc(-1 * env(safe-area-inset-top, 0px));
-            background-image: linear-gradient(
-                to bottom,
-                var(--color-bg) env(safe-area-inset-top, 0px),
-                transparent calc(env(safe-area-inset-top, 0px) + 24px)
-            );
+        body::before {
+            content: '';
+            position: absolute;
+            inset: -64px 0 auto;
+            height: calc(88px + max(48px, env(safe-area-inset-top, 0px)));
+            transform: translateY(var(--safari-scroll-y, 0px));
+            background: linear-gradient(to bottom, var(--color-bg) calc(100% - 24px), transparent);
+            pointer-events: none;
+            z-index: 9;
         }
     }
 }
