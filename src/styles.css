@@ -243,6 +243,7 @@ hr {
 @supports (-webkit-touch-callout: none) {
     @media (hover: none) and (pointer: coarse) {
         body {
+            --safari-status-bar-clip: max(48px, env(safe-area-inset-top, 0px));
             position: relative;
             background-image: radial-gradient(
                 circle at center,
@@ -266,7 +267,7 @@ hr {
 
         .container > main,
         .container > .site-footer {
-            clip-path: inset(var(--safari-content-clip, -100px) -100vw -100px);
+            clip-path: inset(calc(var(--safari-content-clip, -100px) + var(--safari-status-bar-clip)) -100vw -100px);
         }
     }
 }
