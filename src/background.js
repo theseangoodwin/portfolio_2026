@@ -1,16 +1,26 @@
 const canvas = document.querySelector('.site-background');
 const gl = canvas.getContext('webgl', { alpha: false, antialias: false });
-// Keep the status bar tint in the document layer even without WebGL.
 if (getComputedStyle(canvas).position === 'absolute') {
-    let tintFrame;
-    function updateTint() {
-        tintFrame = undefined;
-        document.body.style.setProperty('--safari-scroll-y', `${window.scrollY}px`);
+    const header = document.querySelector('.site-header');
+    const content = [...document.querySelectorAll('.container > main, .container > .site-footer')];
+    let clipFrame;
+
+    function updateContentClip() {
+        clipFrame = undefined;
+        const edge = header.getBoundingClientRect().top;
+        const offsets = content.map(element => edge - element.getBoundingClientRect().top);
+        content.forEach((element, index) => {
+            element.style.setProperty('--safari-content-clip', `${Math.max(-100, offsets[index])}px`);
+        });
     }
-    window.addEventListener('scroll', () => {
-        if (tintFrame === undefined) tintFrame = requestAnimationFrame(updateTint);
-    }, { passive: true });
-    updateTint();
+
+    function scheduleContentClip() {
+        if (clipFrame === undefined) clipFrame = requestAnimationFrame(updateContentClip);
+    }
+
+    window.addEventListener('scroll', scheduleContentClip, { passive: true });
+    window.addEventListener('resize', scheduleContentClip);
+    updateContentClip();
 }
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');

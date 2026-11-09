@@ -264,15 +264,9 @@ hr {
             position: absolute;
         }
 
-        body::before {
-            content: '';
-            position: absolute;
-            inset: -64px 0 auto;
-            height: calc(88px + max(48px, env(safe-area-inset-top, 0px)));
-            transform: translateY(var(--safari-scroll-y, 0px));
-            background: linear-gradient(to bottom, var(--color-bg) calc(100% - 24px), transparent);
-            pointer-events: none;
-            z-index: 9;
+        .container > main,
+        .container > .site-footer {
+            clip-path: inset(var(--safari-content-clip, -100px) -100vw -100px);
         }
     }
 }
