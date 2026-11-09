@@ -1102,9 +1102,10 @@ body {
 
 .site-background {
     position: fixed;
-    inset: 0;
+    inset: calc(-1 * env(safe-area-inset-top, 0px)) 0 auto;
     width: 100%;
     height: 100%;
+    height: calc(100lvh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
     z-index: -1;
     pointer-events: none;
     visibility: hidden;

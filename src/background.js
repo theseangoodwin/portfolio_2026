@@ -70,6 +70,7 @@ if (gl) {
         }
 
         let pixelRatio;
+        let canvasBottom;
         let target = { x: 0, y: 0 };
         let pointer = target;
         let strength = 0;
@@ -85,7 +86,7 @@ if (gl) {
                     y: pointer.y + (target.y - pointer.y) * .2,
                 };
                 strength += (targetStrength - strength) * .14;
-                gl.uniform2f(uniforms.pointer, pointer.x * pixelRatio, canvas.height - pointer.y * pixelRatio);
+                gl.uniform2f(uniforms.pointer, pointer.x * pixelRatio, (canvasBottom - pointer.y) * pixelRatio);
                 gl.uniform1f(uniforms.time, reducedMotion.matches ? 0 : now / 1000);
                 gl.uniform1f(uniforms.influence, reducedMotion.matches ? 0 : strength);
                 gl.uniform1f(uniforms.scrollOffset, window.scrollY * pixelRatio);
@@ -100,6 +101,7 @@ if (gl) {
             const rgb = color.slice(1).match(/.{2}/g).map(channel => parseInt(channel, 16) / 255);
             gl.uniform3f(uniforms.base, ...rgb);
             pixelRatio = Math.min(devicePixelRatio, 1.5);
+            canvasBottom = canvas.getBoundingClientRect().bottom;
             canvas.width = Math.round(canvas.clientWidth * pixelRatio);
             canvas.height = Math.round(canvas.clientHeight * pixelRatio);
             gl.viewport(0, 0, canvas.width, canvas.height);
