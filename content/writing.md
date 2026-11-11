@@ -1,5 +1,10 @@
 # Writing
 
+### [Designing for the Headless Product](https://shippingtoprod.substack.com/p/designing-for-the-headless-product)
+*November 10, 2026*
+
+How personal AI agents change what designers build and where users interact with a product.
+
 ### [6 lessons from my first project with Claude Code](https://shippingtoprod.substack.com/p/6-lessons-from-my-first-project-with)
 *January 12, 2026*
 
