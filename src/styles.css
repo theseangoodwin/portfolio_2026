@@ -1282,9 +1282,17 @@ body {
     }
 }
 
-/* One continuous backdrop covers the navigation and Safari's top safe area. */
+/* Full-strength blur through the safe area and nav; fade only below them. */
 @media screen and (max-width: 768px) {
     .site-header::before {
         top: calc(-1 * env(safe-area-inset-top, 0px));
+        -webkit-mask-image: linear-gradient(to bottom,
+            black 0, black calc(100% - 48px),
+            rgb(0 0 0 / 0.85) calc(100% - 32px),
+            rgb(0 0 0 / 0.35) calc(100% - 14px), transparent 100%);
+        mask-image: linear-gradient(to bottom,
+            black 0, black calc(100% - 48px),
+            rgb(0 0 0 / 0.85) calc(100% - 32px),
+            rgb(0 0 0 / 0.35) calc(100% - 14px), transparent 100%);
     }
 }
