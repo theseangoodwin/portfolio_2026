@@ -18,7 +18,7 @@
 .article-body blockquote p { margin: 0; }
 .article-body blockquote footer { margin-block-start: .75em; font-size: .875rem; font-style: normal; color: var(--color-text-secondary); }
 .article-body em, .article-body cite { font-style: italic; }
-.article-body strong { font-weight: 700; }
+.article-body strong { font-weight: 400; font-style: italic; }
 .article-page a:hover { opacity: 1; text-decoration-thickness: 2px; }
 .article-body li { padding-inline-start: 6px; margin-bottom: 12px; }
 .article-body img { display: block; max-width: 100%; height: auto; margin-block: 32px; }
