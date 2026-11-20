@@ -81,15 +81,17 @@
             applyTheme(nextIndex);
         }
 
-        // Initialize theme on page load - cycle to next theme on each load
+        // Keep the current theme across navigation; advance it on refresh.
         function initTheme() {
             const savedName = localStorage.getItem('themeName');
             const savedIndex = themes.findIndex(theme => theme.name === savedName);
 
             if (savedIndex >= 0) {
-                // Advance to next theme on each page load
-                const nextIndex = (savedIndex + 1) % themes.length;
-                applyTheme(nextIndex);
+                const navigation = performance.getEntriesByType('navigation')[0];
+                const index = navigation?.type === 'reload'
+                    ? (savedIndex + 1) % themes.length
+                    : savedIndex;
+                applyTheme(index);
             } else {
                 // Random theme on first visit
                 const randomIndex = Math.floor(Math.random() * themes.length);
