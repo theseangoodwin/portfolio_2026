@@ -564,6 +564,7 @@ hr {
 
 #writing em {
     display: block;
+    font-family: var(--font-berkeley);
     color: var(--color-text-secondary);
     font-size: var(--font-size-meta);
     font-style: normal;
