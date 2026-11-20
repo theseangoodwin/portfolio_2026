@@ -112,3 +112,48 @@ jobs:
 ## License
 
 MIT
+
+## Articles and newsletter
+
+Open `http://localhost:8080/writing.html` for the writing archive, or
+`http://localhost:8080/articles/a-place-for-the-work.html` for the sample format.
+The sample is demonstration copy, not an imported Substack essay.
+
+To bring an essay over, create `content/articles/your-article-slug.md`:
+
+```markdown
+---
+title: Your article title
+description: A short introduction to the essay.
+date: 2026-11-17
+---
+
+Your writing goes here, with an inline footnote.[^aside]
+
+## A section heading
+
+More writing.
+
+[^aside]: The aside opens in place when the reader clicks its number.
+```
+
+Use plain, unquoted values in the metadata header. `title`, `description`, and
+`date` are required; `status` is an optional short label (defaults to “Essay”).
+The filename becomes the article URL. Articles appear automatically in the
+writing archive, newest first. Markdown supports headings, links, lists, quotes,
+code, and images. Use `../images/your-image.jpg` for images stored in `src/images`.
+Footnotes accept inline Markdown and four-space-indented continuation lines.
+They are numbered by first reference, work with keyboard activation, remain
+readable without JavaScript, and are included when printing.
+
+Run `npm run build` after edits; the local server serves the rebuilt files.
+The homepage retains its curated entries in `content/writing.md`; update those
+links to local article URLs as you migrate individual essays.
+
+### Buttondown
+
+Set `buttondownUsername` in `content/newsletter.json` to your Buttondown username
+and rebuild. This renders an email form using Buttondown’s hosted subscription
+endpoint; no API key is needed. Buttondown handles the next confirmation step.
+Until configured, the page links to `fallbackSubscribeUrl` (currently your
+Substack subscribe page). See [Buttondown’s embedding documentation](https://docs.buttondown.com/building-your-subscriber-base).

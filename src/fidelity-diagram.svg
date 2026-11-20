@@ -1,0 +1,23 @@
+<svg class="fidelity-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="96 100 844 653" role="img" aria-labelledby="fidelity-title fidelity-description">
+  <title id="fidelity-title">Fidelity and definition</title>
+  <desc id="fidelity-description">A gradual path increases fidelity alongside problem definition. As you scroll, that path fades and a steep path shows how AI can produce high fidelity with little definition.</desc>
+  <rect class="fidelity-entry-trigger" x="518" y="426.5" width="1" height="1" fill="none" aria-hidden="true"/>
+  <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M202 672 C201 490 202 285 204 123 Q204 113 199 107 M183 133 Q189 108 194 105 Q211 112 230 130"/>
+    <path d="M202 669 C420 670 770 667 891 677 M885 645 Q914 657 936 669 Q928 678 911 685 Q898 691 890 700"/>
+    <g class="fidelity-gradual">
+      <path class="fidelity-line" d="M238 629 C269 613 287 601 304 574 C311 564 319 550 326 543 C341 532 369 539 391 534 C408 531 422 527 429 514 C449 482 474 439 491 429 C506 422 537 429 553 429 C559 429 582 406 610 383 C626 369 631 368 646 369 C670 369 686 375 704 371 C737 361 754 341 780 319 L834 279"/>
+      <path class="fidelity-arrow" d="M-27 -16 Q-10 -3 0 0 Q-10 3 -27 16" transform="translate(834 279) rotate(-37)"/>
+      <path class="fidelity-circle" d="M865 237 Q852 259 857 271 Q866 277 880 272 Q889 266 886 242 Q880 237 870 234"/>
+    </g>
+    <g class="fidelity-steep">
+      <path class="fidelity-line" d="M241 622 C238 588 258 481 275 390 L310 228 Q314 204 316 188"/>
+      <path class="fidelity-arrow" d="M-27 -16 Q-10 -3 0 0 Q-10 3 -27 16" transform="translate(316 188) rotate(-85)"/>
+      <path class="fidelity-circle" d="M319 123 Q301 130 306 149 Q322 154 333 145 Q344 133 328 118"/>
+    </g>
+  </g>
+  <g fill="currentColor" font-family="var(--font-berkeley, monospace)" font-size="36" letter-spacing=".02em">
+    <text x="569" y="745" text-anchor="middle" dx=".01em">DEFINITION</text>
+    <text transform="translate(124 388) rotate(90)" text-anchor="middle" dx=".01em">FIDELITY</text>
+  </g>
+</svg>

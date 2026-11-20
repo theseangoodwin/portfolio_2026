@@ -25,7 +25,7 @@ function convertMarkdown(markdown) {
 }
 
 // Limit writing entries to a max count and add "view all" link if exceeded
-function limitWritingEntries(markdown, maxEntries = 3, substackUrl = 'https://shippingtoprod.substack.com') {
+function limitWritingEntries(markdown, maxEntries = 3, substackUrl = 'writing.html') {
     const lines = markdown.split('\n');
     const headerLine = lines[0]; // # Writing
     const entries = [];
@@ -96,7 +96,7 @@ const writingMarkdown = readMarkdown('writing.md');
 const experienceMarkdown = readMarkdown('experience.md');
 
 const aboutHtml = convertMarkdown(aboutMarkdown);
-const limitedWritingMarkdown = limitWritingEntries(writingMarkdown);
+const limitedWritingMarkdown = limitWritingEntries(writingMarkdown, 3, 'writing.html');
 const writingHtml = convertMarkdown(limitedWritingMarkdown);
 const experienceHtml = convertMarkdown(experienceMarkdown);
 const codingTool = process.env.CODING_TOOL || 'Codex';
@@ -161,6 +161,7 @@ const distCssPath = path.join(distDir, 'styles.css');
 fs.copyFileSync(srcCssPath, distCssPath);
 
 fs.copyFileSync(path.join(srcDir, 'background.js'), path.join(distDir, 'background.js'));
+fs.copyFileSync(path.join(srcDir, 'theme.js'), path.join(distDir, 'theme.js'));
 
 // Copy fonts directory to dist
 const srcFontsDir = path.join(srcDir, 'fonts');
@@ -214,3 +215,5 @@ console.log(`  - Copied: ${distCssPath}`);
 if (fontCount > 0) console.log(`  - Copied: ${fontCount} font file(s)`);
 if (imageCount > 0) console.log(`  - Copied: ${imageCount} image file(s)`);
 if (videoCount > 0) console.log(`  - Copied: ${videoCount} video file(s)`);
+
+require('./scripts/build-articles')(__dirname);

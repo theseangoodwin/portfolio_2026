@@ -1,5 +1,10 @@
 # Writing
 
+### [High fidelity, low definition](articles/high-fidelity-low-definition.html)
+*November 19, 2026*
+
+Bring clarity through deliberate design fidelity.
+
 ### [Designing for the Headless Product](https://shippingtoprod.substack.com/p/designing-for-the-headless-product)
 *November 10, 2026*
 
