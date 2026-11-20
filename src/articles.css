@@ -12,7 +12,7 @@
 .article-body p { margin-block-end: 1.4em; }
 .article-body h2 { font-family: var(--font-mono); font-size: 1.875rem; line-height: 1.25; margin-block: 3.5rem 1.5rem; text-wrap: balance; }
 .article-body h3 { font-family: var(--font-mono); font-size: 1.5rem; line-height: 1.25; }
-.article-body a { font-family: inherit; }
+.article-body a { font-family: var(--font-sans); }
 .article-body a::after { content: ' ↗'; }
 .article-body blockquote { border-inline-start: 2px solid currentColor; padding-inline-start: 24px; margin-block: 1.65em; font: inherit; }
 .article-body blockquote p { margin: 0; }

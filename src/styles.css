@@ -204,7 +204,7 @@ p {
 
 /* Links */
 a {
-    font-family: inherit;
+    font-family: var(--font-sans);
     text-underline-offset: .18em;
     text-decoration-thickness: from-font;
     text-decoration-skip-ink: auto;
@@ -538,6 +538,15 @@ hr {
 }
 
 /* Writing Column */
+#writing a {
+    text-decoration-line: none;
+}
+
+#writing a:hover,
+#writing a:focus-visible {
+    text-decoration-line: underline;
+}
+
 #writing h1 {
     margin-bottom: var(--spacing-content);
 }
