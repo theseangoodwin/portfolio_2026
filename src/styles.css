@@ -1282,19 +1282,9 @@ body {
     }
 }
 
-/* Keep Safari's status-bar inset solid; blur only the navigation below it. */
+/* One continuous backdrop covers the navigation and Safari's top safe area. */
 @media screen and (max-width: 768px) {
     .site-header::before {
-        top: env(safe-area-inset-top, 0px);
-    }
-
-    .site-header::after {
-        content: '';
-        position: fixed;
-        inset: 0 0 auto;
-        height: env(safe-area-inset-top, 0px);
-        background: var(--color-bg);
-        pointer-events: none;
-        z-index: 1;
+        top: calc(-1 * env(safe-area-inset-top, 0px));
     }
 }
