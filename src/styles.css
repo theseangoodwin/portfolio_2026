@@ -1258,8 +1258,7 @@ body {
         pointer-events: none;
     }
 
-    .has-scroll-navigation.show-mobile-links .site-nav--sections,
-    .has-scroll-navigation:focus-within .site-nav--sections {
+    .has-scroll-navigation.show-mobile-links .site-nav--sections {
         max-height: 52px;
         opacity: 1;
         visibility: visible;

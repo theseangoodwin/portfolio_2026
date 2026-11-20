@@ -58,6 +58,13 @@
             const theme = themes[index];
             const root = document.documentElement;
 
+            let themeColor = document.querySelector('meta[name="theme-color"]');
+            if (!themeColor) {
+                themeColor = document.createElement('meta');
+                themeColor.name = 'theme-color';
+                document.head.append(themeColor);
+            }
+            themeColor.content = theme.base;
             root.style.setProperty('--color-base', theme.base);
             root.style.setProperty('--color-accent', theme.accent);
             root.style.setProperty('--color-accent-50', hexToRgba(theme.accent, 0.5));
@@ -103,4 +110,28 @@
         // Initialize theme
         initTheme();
 
+})();
+
+// Keep direction detection independent of the homepage's section tracking.
+(() => {
+    const header = document.querySelector('.site-header');
+    const nav = header?.querySelector('.site-nav--sections');
+    if (!nav) return;
+    const mobile = matchMedia('(max-width: 768px)');
+    let previous = Math.max(0, window.scrollY);
+    header.classList.add('has-scroll-navigation');
+    function sync() {
+        const current = Math.max(0, Math.min(window.scrollY,
+            document.documentElement.scrollHeight - window.innerHeight));
+        const delta = current - previous;
+        if (Math.abs(delta) >= 4 || current === 0) {
+            header.classList.toggle('show-mobile-links', current === 0 || delta < 0);
+            previous = current;
+        }
+        nav.inert = mobile.matches && !header.classList.contains('show-mobile-links');
+    }
+    window.addEventListener('scroll', sync, { passive: true });
+    mobile.addEventListener('change', sync);
+    window.addEventListener('pageshow', sync);
+    sync();
 })();
