@@ -1,6 +1,6 @@
 # Writing
 
-### [High fidelity, low definition](articles/high-fidelity-low-definition.html)
+### [High fidelity, low definition](/articles/high-fidelity-low-definition)
 *November 19, 2026*
 
 Bring clarity through deliberate design fidelity.
