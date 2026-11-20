@@ -747,7 +747,6 @@ hr {
 .site-footer {
     margin-top: var(--spacing-section);
     padding-top: var(--spacing-small);
-    border-top: 1px solid var(--color-divider);
 }
 
 .footer-links {
