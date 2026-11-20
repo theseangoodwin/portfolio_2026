@@ -1239,7 +1239,7 @@ body {
 
     .site-header::before {
         content: '';
-        background: color-mix(in srgb, var(--color-bg) 65%, transparent);
+        background: transparent;
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(14px);
     }
@@ -1279,5 +1279,22 @@ body {
     .has-scroll-navigation::before { bottom: -48px; }
     .has-scroll-navigation.show-mobile-links .site-nav--sections {
         transition-delay: 0s;
+    }
+}
+
+/* Keep Safari's status-bar inset solid; blur only the navigation below it. */
+@media screen and (max-width: 768px) {
+    .site-header::before {
+        top: env(safe-area-inset-top, 0px);
+    }
+
+    .site-header::after {
+        content: '';
+        position: fixed;
+        inset: 0 0 auto;
+        height: env(safe-area-inset-top, 0px);
+        background: var(--color-bg);
+        pointer-events: none;
+        z-index: 1;
     }
 }
