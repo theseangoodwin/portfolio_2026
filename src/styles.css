@@ -1224,3 +1224,51 @@ body {
         display: none;
     }
 }
+
+/* Compact mobile masthead; section links return on upward scrolling. */
+@media screen and (max-width: 768px) {
+    :root { --header-height: 60px; }
+
+    .site-header {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 0;
+        background-color: transparent;
+    }
+
+    .site-header::before {
+        content: '';
+        background: color-mix(in srgb, var(--color-bg) 65%, transparent);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+    }
+
+    .site-header .site-title { font-size: 18px; }
+    .site-header .site-nav { gap: clamp(10px, 3vw, 20px); }
+    .site-header .site-nav a { font-size: 12px; }
+
+    .has-scroll-navigation .site-nav--sections,
+    .has-scroll-navigation .site-title--scroll + .site-nav--sections {
+        transform: none;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .has-scroll-navigation.show-mobile-links .site-nav--sections,
+    .has-scroll-navigation:focus-within .site-nav--sections {
+        max-height: 52px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+@media screen and (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .has-scroll-navigation .site-nav--sections {
+        transition: max-height 140ms ease-out, opacity 100ms ease-out, visibility 100ms;
+    }
+}
