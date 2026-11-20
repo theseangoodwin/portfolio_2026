@@ -758,12 +758,18 @@ hr {
 }
 
 .footer-links a {
-    font-family: inherit;
+    font-family: var(--font-sans);
+    text-decoration: none;
     text-underline-offset: .18em;
     text-decoration-thickness: from-font;
     text-decoration-skip-ink: auto;
     font-size: var(--font-size-body);
     color: var(--color-text-primary);
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    text-decoration-line: underline;
 }
 
 .footer-separator {
