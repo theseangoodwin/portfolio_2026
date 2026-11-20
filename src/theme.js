@@ -119,14 +119,26 @@
     if (!nav) return;
     const mobile = matchMedia('(max-width: 768px)');
     let previous = Math.max(0, window.scrollY);
+    let direction = 0;
+    let travel = 0;
     header.classList.add('has-scroll-navigation');
     function sync() {
         const current = Math.max(0, Math.min(window.scrollY,
             document.documentElement.scrollHeight - window.innerHeight));
         const delta = current - previous;
-        if (Math.abs(delta) >= 4 || current === 0) {
-            header.classList.toggle('show-mobile-links', current === 0 || delta < 0);
-            previous = current;
+        previous = current;
+        if (current <= 8) {
+            header.classList.add('show-mobile-links');
+            travel = 0;
+            direction = 0;
+        } else if (delta !== 0) {
+            const nextDirection = Math.sign(delta);
+            travel = nextDirection === direction ? travel + Math.abs(delta) : Math.abs(delta);
+            direction = nextDirection;
+            // Require deliberate travel after a reversal, ignoring touch jitter.
+            if (travel >= 24) {
+                header.classList.toggle('show-mobile-links', direction < 0);
+            }
         }
         nav.inert = mobile.matches && !header.classList.contains('show-mobile-links');
     }

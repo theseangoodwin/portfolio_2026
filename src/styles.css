@@ -1250,8 +1250,11 @@ body {
 
     .has-scroll-navigation .site-nav--sections,
     .has-scroll-navigation .site-title--scroll + .site-nav--sections {
-        transform: none;
-        max-height: 0;
+        position: absolute;
+        top: 100%;
+        inset-inline: 0;
+        justify-content: center;
+        transform: translateY(-6px);
         opacity: 0;
         visibility: hidden;
         overflow: hidden;
@@ -1259,7 +1262,7 @@ body {
     }
 
     .has-scroll-navigation.show-mobile-links .site-nav--sections {
-        max-height: 52px;
+        transform: translateY(0);
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
@@ -1268,6 +1271,13 @@ body {
 
 @media screen and (max-width: 768px) and (prefers-reduced-motion: no-preference) {
     .has-scroll-navigation .site-nav--sections {
-        transition: max-height 140ms ease-out, opacity 100ms ease-out, visibility 100ms;
+        transition: transform 160ms ease-out, opacity 160ms ease-out, visibility 0s 160ms;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .has-scroll-navigation::before { bottom: -48px; }
+    .has-scroll-navigation.show-mobile-links .site-nav--sections {
+        transition-delay: 0s;
     }
 }
