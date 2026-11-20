@@ -209,7 +209,7 @@ a {
     text-decoration-thickness: from-font;
     text-decoration-skip-ink: auto;
     color: var(--color-accent);
-    text-decoration: underline;
+    text-decoration: none;
     transition: opacity 0.2s ease;
 }
 
@@ -219,6 +219,17 @@ a::after {
 
 a:hover {
     opacity: 0.7;
+}
+
+a:hover,
+a:focus-visible {
+    text-decoration-line: underline;
+}
+
+#about p a,
+.article-body p a,
+.article-body li a {
+    font-size: .95em;
 }
 
 /* Lists */
