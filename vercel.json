@@ -1,5 +1,17 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/writing",
+      "destination": "/#writing",
+      "permanent": true
+    },
+    {
+      "source": "/writing.html",
+      "destination": "/#writing",
+      "permanent": true
+    }
+  ]
 }

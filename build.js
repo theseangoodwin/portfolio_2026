@@ -25,7 +25,7 @@ function convertMarkdown(markdown) {
 }
 
 // Limit writing entries to a max count and add "view all" link if exceeded
-function limitWritingEntries(markdown, maxEntries = 3, substackUrl = '/writing') {
+function limitWritingEntries(markdown, maxEntries = 3, substackUrl = 'https://shippingtoprod.substack.com/archive') {
     const lines = markdown.split('\n');
     const headerLine = lines[0]; // # Writing
     const entries = [];
@@ -96,7 +96,7 @@ const writingMarkdown = readMarkdown('writing.md');
 const experienceMarkdown = readMarkdown('experience.md');
 
 const aboutHtml = convertMarkdown(aboutMarkdown);
-const limitedWritingMarkdown = limitWritingEntries(writingMarkdown, 3, '/writing');
+const limitedWritingMarkdown = limitWritingEntries(writingMarkdown, 3, 'https://shippingtoprod.substack.com/archive');
 const writingHtml = convertMarkdown(limitedWritingMarkdown);
 const experienceHtml = convertMarkdown(experienceMarkdown);
 const codingTool = process.env.CODING_TOOL || 'Codex';
