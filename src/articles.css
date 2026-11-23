@@ -129,6 +129,33 @@
 }
 .article-nav .site-nav a { min-height: 44px; display: inline-flex; align-items: center; }
 
+@media screen and (max-width: 768px) {
+  .article-nav.has-scroll-navigation { margin-bottom: 0; }
+  .article-nav.has-scroll-navigation + main { padding-top: 44px; }
+  .article-heading { margin-block: 16px 28px; }
+
+  .article-nav.has-scroll-navigation::before {
+    bottom: -16px;
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black 0, black calc(100% - 16px), transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0, black calc(100% - 16px), transparent 100%);
+  }
+  .article-nav.has-scroll-navigation.show-mobile-links::before { bottom: -60px; }
+
+  /* Cover the status-bar inset even while article text scrolls beneath it. */
+  .article-nav::after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * env(safe-area-inset-top, 0px));
+    left: 50%;
+    width: 100vw;
+    height: env(safe-area-inset-top, 0px);
+    transform: translateX(-50%);
+    background: var(--color-bg);
+    pointer-events: none;
+  }
+}
+
 ::highlight(fidelity-emphasis-1), ::highlight(fidelity-emphasis-2) {
   background-color: color-mix(in srgb, var(--color-text-primary) var(--highlight-strength, 100%), transparent);
   color: color-mix(in srgb, var(--color-bg) var(--highlight-strength, 100%), var(--color-text-primary));
