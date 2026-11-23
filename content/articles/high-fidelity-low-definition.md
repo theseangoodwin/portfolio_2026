@@ -41,7 +41,7 @@ Low fidelity can keep exploration focused and enable you to fill in the details 
 >
 > <footer>Ryan Singer, <cite><a href="https://basecamp.com/shapeup">Shape Up</a></cite></footer>
 
-Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". One interpretation of this may be that we don't want to anchor ourselves too early. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
+Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". An interpretation of this is to prevent anchoring ourselves too early. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
 
 Low fidelity helps you explore in two ways:
 1. Low fidelity keeps focus on the most important aspects of the problem. When a sculptor works in clay, they add material to ensure the overall form is clear before introducing details like facial expression or muscle tone. Extraneous details will not solve foundational issues.
