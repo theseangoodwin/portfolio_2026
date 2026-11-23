@@ -5,14 +5,18 @@
 .back-link { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-secondary); text-decoration: none; }
 .article-heading { margin-block: 40px 48px; }
 .article-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--color-text-secondary); margin-bottom: 16px; }
-.article-heading h1 { font-size: clamp(40px, 7vw, 62px); line-height: 1.12; letter-spacing: -.025em; text-wrap: balance; margin-bottom: 24px; }
-.article-deck { font-size: 1.3125rem; line-height: 1.5; max-width: 58ch; color: var(--color-text-secondary); text-wrap: pretty; }
-.article-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-berkeley); font-size: .875rem; color: var(--color-text-secondary); margin-top: 28px; }
+.article-heading h1 { font-size: clamp(40px, 7vw, 62px); line-height: 1.12; letter-spacing: -.025em; text-wrap: balance; margin-bottom: 18px; }
+.article-deck { font-style: italic; font-size: 1.3125rem; line-height: 1.5; max-width: 58ch; color: var(--color-text-secondary); text-wrap: pretty; }
+.article-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-berkeley); font-size: .875rem; color: var(--color-text-secondary); margin-top: 21px; }
 .article-body { font-size: 1.1875rem; line-height: 1.58; max-width: 65ch; overflow-wrap: break-word; }
 .article-body p { margin-block-end: 1.4em; }
 .article-body h2 { font-family: var(--font-sans); font-size: 1.875rem; line-height: 1.25; margin-block: 3.5rem 1.5rem; text-wrap: balance; }
 .article-body h3 { font-family: var(--font-sans); font-size: 1.5rem; line-height: 1.25; }
-.article-body a { font-family: var(--font-sans); }
+.article-page .article-body a {
+  font-family: var(--font-sans);
+  font-size: .9em;
+  text-decoration-line: underline;
+}
 .article-body a::after { content: ' ↗'; }
 .article-body blockquote { border-inline-start: 2px solid currentColor; padding-inline-start: 24px; margin-block: 1.65em; font-size: clamp(1.375rem, 3vw, 1.625rem); line-height: 1.45; font-style: italic; }
 .article-body blockquote p { margin: 0; }
@@ -29,7 +33,7 @@
 .footnote-content { display: block; margin-block: 18px; padding: 16px 20px; border-inline-start: 2px solid var(--color-divider); background: color-mix(in srgb, var(--color-text-primary) 6%, var(--color-bg)); font-size: 14px; line-height: 1.7; color: var(--color-text-primary); }
 .footnote-content[hidden] { display: none; }
 .footnote-number { margin-inline-end: 12px; }
-.article-end { text-align: center; letter-spacing: .4em; margin-block: 56px; color: var(--color-text-secondary); }
+.article-end { display: flex; justify-content: center; gap: .4em; width: calc(100% + var(--article-rail, 0px)); margin-block: 56px; color: var(--color-text-secondary); }
 .article-subscribe { border-block: 1px solid var(--color-divider); padding-block: 36px 40px; scroll-margin-top: 24px; }
 .article-subscribe h2 { margin: 0 0 16px; font-size: 36px; }
 .article-subscribe > p:not(.article-eyebrow) { color: var(--color-text-secondary); font-size: 14px; max-width: 55ch; }

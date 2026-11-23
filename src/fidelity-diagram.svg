@@ -16,7 +16,7 @@
       <path class="fidelity-circle" d="M319 123 Q301 130 306 149 Q322 154 333 145 Q344 133 328 118"/>
     </g>
   </g>
-  <g fill="currentColor" font-family="var(--font-berkeley, monospace)" font-size="36" letter-spacing=".02em">
+  <g fill="currentColor" font-family="var(--font-berkeley, monospace)" font-size="28.8" letter-spacing=".02em">
     <text x="569" y="745" text-anchor="middle" dx=".01em">DEFINITION</text>
     <text transform="translate(124 388) rotate(90)" text-anchor="middle" dx=".01em">FIDELITY</text>
   </g>
