@@ -23,7 +23,7 @@ Now I am seeing a pattern on AI-native teams: they start in high fidelity protot
 
 The teams run into issues of misalignment, delays, and churn. They spend time untangling assumptions by working backwards from each other's proposed solutions. Teams anchor to early solutions without sufficiently considering other approaches. The assumptions underneath are untested while the prototype looks complete and polished.
 
-Generating detail is now incredibly easy with AI, but evaluation has become the bottleneck. Simply producing more prototypes in high fidelity does not speed up your team's alignment on what matters. After being on the barrel-end of enough "slop cannons," I've realized receiving more high fidelity AI outputs without clear problem definition is liable to introduce more confusion.
+Generating detail is now incredibly easy with AI, but evaluation has become the bottleneck. Simply producing more prototypes in high fidelity is a slow way to improve your team's alignment on what matters. After being on the barrel-end of enough "slop cannons," I've realized receiving more high fidelity AI outputs without clear problem definition is liable to introduce more confusion.
 
 The solution: **use fidelity deliberately to increase clarity.**
 
