@@ -1241,3 +1241,75 @@ body {
         display: none;
     }
 }
+
+/* Compact mobile masthead; section links return on upward scrolling. */
+@media screen and (max-width: 768px) {
+    :root { --header-height: 60px; }
+
+    .site-header {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 0;
+        background-color: transparent;
+    }
+
+    .site-header::before {
+        content: '';
+        background: transparent;
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+    }
+
+    .site-header .site-title { font-size: 18px; }
+    .site-header .site-nav { gap: clamp(10px, 3vw, 20px); }
+    .site-header .site-nav a { font-size: 12px; }
+
+    .has-scroll-navigation .site-nav--sections,
+    .has-scroll-navigation .site-title--scroll + .site-nav--sections {
+        position: absolute;
+        top: 100%;
+        inset-inline: 0;
+        justify-content: center;
+        transform: translateY(-6px);
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .has-scroll-navigation.show-mobile-links .site-nav--sections {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+@media screen and (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .has-scroll-navigation .site-nav--sections {
+        transition: transform 160ms ease-out, opacity 160ms ease-out, visibility 0s 160ms;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .has-scroll-navigation::before { bottom: -48px; }
+    .has-scroll-navigation.show-mobile-links .site-nav--sections {
+        transition-delay: 0s;
+    }
+}
+
+/* Full-strength blur through the safe area and nav; fade only below them. */
+@media screen and (max-width: 768px) {
+    .site-header::before {
+        top: calc(-1 * env(safe-area-inset-top, 0px));
+        -webkit-mask-image: linear-gradient(to bottom,
+            black 0, black calc(100% - 48px),
+            rgb(0 0 0 / 0.85) calc(100% - 32px),
+            rgb(0 0 0 / 0.35) calc(100% - 14px), transparent 100%);
+        mask-image: linear-gradient(to bottom,
+            black 0, black calc(100% - 48px),
+            rgb(0 0 0 / 0.85) calc(100% - 32px),
+            rgb(0 0 0 / 0.35) calc(100% - 14px), transparent 100%);
+    }
+}
