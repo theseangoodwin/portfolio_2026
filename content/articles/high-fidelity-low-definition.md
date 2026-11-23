@@ -41,7 +41,7 @@ Low fidelity can keep exploration focused and enable you to fill in the details 
 >
 > <footer>Ryan Singer, <cite><a href="https://basecamp.com/shapeup">Shape Up</a></cite></footer>
 
-Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". An interpretation of this is to prevent anchoring ourselves too early. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
+Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". An interpretation of this is to prevent ourselves from anchoring. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
 
 Low fidelity helps you explore in two ways:
 1. Low fidelity keeps focus on the most important aspects of the problem. When a sculptor works in clay, they add material to ensure the overall form is clear before introducing details like facial expression or muscle tone. Extraneous details will not solve foundational issues.
@@ -50,8 +50,6 @@ Low fidelity helps you explore in two ways:
 Shape your product like a sculptor; develop the form and then decide the details.
 
 ## Determining your own fidelity
-Define what you must learn or decide. Then, select the fidelity most suited to the task. If you want to compare high level journeys, then a user flow or storyboard can suffice. A clearly written problem statement that clarifies your constraints can help.
+Define what you must learn or decide. Consider who is your audience. Then, select the fidelity most suited to the task. If you want to compare high level journeys, then a user flow or storyboard can suffice. When sharing any concept, [high fidelity will get you low level feedback, and low fidelity will get you high level feedback](https://x.com/round/status/1151500868593836038). Evaluating the product system is easier when you abstract away the implementation details. However, if your scope is narrow and well defined, moving straight to high fidelity prototyping may be the fastest way to evaluate a new experience.
 
-When sharing any concept, [high fidelity will get you low level feedback, and low fidelity will get you high level feedback](https://x.com/round/status/1151500868593836038). Evaluating the product system is easier when you abstract away the implementation details. However, if your scope is narrow and well defined, moving straight to high fidelity prototyping may be the fastest way to evaluate a new experience.
-
-The next time someone sends you a polished high fidelity prototype without clear direction, ask "What decision will this help us make? What do we need to learn from this prototype?" If the details don't help answer, step down into low fidelity user flows or whiteboard sketches as a 'visual shorthand' to speed up collaboration. Encourage your team to focus on the most critical aspects first. And once direction and scope are clear, ramp up the prototype fidelity.
+The next time someone sends you a polished prototype without clear direction, ask "What decision will this help us make? What do we need to learn from this prototype?" If the details don't help answer, step down into low fidelity user flows or whiteboard sketches as a 'visual shorthand' to speed up collaboration. Encourage your team to focus on the most critical aspects first. And once direction and scope are clear, ramp up the prototype fidelity.
