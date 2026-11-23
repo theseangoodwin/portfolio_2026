@@ -5,7 +5,7 @@ date: 2026-11-23
 status: Draft
 ---
 
-In the beginning of my career I worked as an identity designer. Gradually I moved into digital products as a "visual designer," where I worked alongside an information architect that would spec out wireframes. Later, when the industry collapsed expectations of both roles into the "product designer," designers working on interfaces often moved from low to high fidelity.
+In the beginning of my career I worked as an identity designer. Gradually I moved into digital products as a "visual designer," where I worked alongside an information architect that would spec out wireframes. Later, when the industry collapsed both roles into the "product designer," I still found it common to move from low to high fidelity in many of my projects.
 
 There was a natural, sequential process of design artifacts moving from whiteboards or wireframes (low fidelity) to pixel perfect mockups and interactive prototypes (high fidelity). Producing high fidelity used to take time, attention, and effort. Now, we (and our PMs) can generate a realistic prototype in minutes. How should we think about prototype fidelity in an AI-native world?
 
