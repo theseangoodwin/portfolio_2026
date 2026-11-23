@@ -25,13 +25,12 @@ The teams run into issues of misalignment, delays, and churn. They spend time un
 
 Generating detail is now incredibly easy with AI, but evaluation has become the bottleneck. Simply producing more prototypes in high fidelity is a slow way to improve your team's alignment on what matters. After being on the barrel-end of enough "slop cannons," I've realized receiving more high fidelity AI outputs without clear problem definition is liable to introduce more confusion.
 
-The solution: **use fidelity deliberately to increase clarity.**
+## Deliberate fidelity choices
+The key is considering fidelity as a design tactic, and deploying the right level of abstraction to increase your learning and decision velocity.
 
 User flows, storyboards, sketches, whiteboards, and wireframes remain useful in an AI-native design process. Low fidelity enables your team to move at high velocity in the stages of early definition. You focus on the right problems while trusting that the details can be filled in later.
 
-High fidelity is useful when people must experience the details to evaluate a solution. For a narrow or incremental change, that may be the fastest place to start. But many teams move directly to implementation and sidestep problem definition. The risk is that you start moving 10x as fast in the *wrong direction*.
-
-The key is considering fidelity as a design tactic, and deploying the right level of abstraction to increase your learning and decision velocity.
+High fidelity is useful when people must experience the details to evaluate a solution. For a narrow or incremental change, that may be the fastest place to start. But many teams move directly to implementation and sidestep problem definition. The risk is moving 10x as fast in the *wrong direction*.
 
 ## Shaping the work
 Low fidelity can keep exploration focused and enable you to fill in the details later. A practical use of low fidelity comes from [Ryan Singer](https://x.com/rjs)'s book on product development, *[Shape Up](https://basecamp.com/shapeup)*.
@@ -42,7 +41,7 @@ Low fidelity can keep exploration focused and enable you to fill in the details 
 >
 > <footer>Ryan Singer, <cite><a href="https://basecamp.com/shapeup">Shape Up</a></cite></footer>
 
-Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". One useful interpretation of this may be that we don't want to anchor ourselves too early. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
+Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". One interpretation of this may be that we don't want to anchor ourselves too early. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
 
 Low fidelity helps you explore in two ways:
 1. Low fidelity keeps focus on the most important aspects of the problem. When a sculptor works in clay, they add material to ensure the overall form is clear before introducing details like facial expression or muscle tone. Extraneous details will not solve foundational issues.
