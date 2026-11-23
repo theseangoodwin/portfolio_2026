@@ -29,7 +29,7 @@ The solution: **use fidelity deliberately to increase clarity.**
 
 User flows, storyboards, sketches, whiteboards, and wireframes remain useful in an AI-native design process. Low fidelity enables your team to move at high velocity in the stages of early definition. You focus on the right problems while trusting that the details can be filled in later.
 
-High fidelity is useful when people must experience the details to evaluate a solution. For a narrow or incremental change, that may be the fastest place to start. But many teams move directly to implementation and sidestep problem definition. The risk is that you start moving 10x as fast in the *wrong direction*. High output velocity is not a guarantee of meeting your objective faster.
+High fidelity is useful when people must experience the details to evaluate a solution. For a narrow or incremental change, that may be the fastest place to start. But many teams move directly to implementation and sidestep problem definition. The risk is that you start moving 10x as fast in the *wrong direction*.
 
 The key is considering fidelity as a design tactic, and deploying the right level of abstraction to increase your learning and decision velocity.
 
