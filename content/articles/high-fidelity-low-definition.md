@@ -21,15 +21,15 @@ Now I am seeing a pattern on AI-native teams: they start in high fidelity protot
 
 <!-- FIDELITY_DIAGRAM_SECOND -->
 
-The teams run into issues of misalignment, delays, and churn. They spend time untangling assumptions by working backwards from each other's proposed solutions. Teams anchor to early solutions without sufficiently considering option breadth. The assumptions underneath are untested while the prototype looks complete and polished.
+The teams run into issues of misalignment, delays, and churn. They spend time untangling assumptions by working backwards from each other's proposed solutions. Teams anchor to early solutions without sufficiently considering other approaches. The assumptions underneath are untested while the prototype looks complete and polished.
 
-Generating detail is now incredibly easy with AI, but evaluating has become the bottleneck. Simply producing more prototypes in high fidelity does not speed up your team's alignment on what matters. After being on the barrel-end of enough "slop cannons," I've realized receiving more high fidelity AI outputs without clear problem definition is liable to introduce more confusion.
+Generating detail is now incredibly easy with AI, but evaluation has become the bottleneck. Simply producing more prototypes in high fidelity does not speed up your team's alignment on what matters. After being on the barrel-end of enough "slop cannons," I've realized receiving more high fidelity AI outputs without clear problem definition is liable to introduce more confusion.
 
 The solution: **use fidelity deliberately to increase clarity.**
 
 User flows, storyboards, sketches, whiteboards, and wireframes remain useful in an AI-native design process. Low fidelity enables your team to move at high velocity in the stages of early definition. You focus on the right problems while trusting that the details can be filled in later.
 
-High fidelity is useful when you are aligned on direction and move to solving scope and implementation. Many teams move to implementation and sidestep problem definition. The risk is that you start moving 10x as fast in the *wrong direction*. High output velocity is not a guarantee of meeting your objective faster.
+High fidelity is useful when people must experience the details to evaluate a solution. For a narrow or incremental change, that may be the fastest place to start. But many teams move directly to implementation and sidestep problem definition. The risk is that you start moving 10x as fast in the *wrong direction*. High output velocity is not a guarantee of meeting your objective faster.
 
 The key is considering fidelity as a design tactic, and deploying the right level of abstraction to increase your learning and decision velocity.
 
@@ -44,13 +44,15 @@ Low fidelity can keep exploration focused and enable you to fill in the details 
 
 Ryan describes the issue of developing concrete (ie, high fidelity) artifacts too early as "*leaving no room for creativity*". One useful interpretation of this may be that we don't want to anchor ourselves too early. The psychological effect of anchoring is that your later decisions are influenced by your starting point. When you anchor too early, you hit an opportunity cost of finding more creative and innovative ideas, and direct costs of time and energy overcommitting to the wrong direction.
 
-Deliberate use of low fidelity helps you fight the anchoring effect in two ways:
-1. Low fidelity keeps focus on the most important aspects of the problem. When a sculptor works in clay, they add material to ensure the overall form is clear before introducing details like facial expression or muscle tone.
-2. Working at low fidelity keeps idea generation **and** evaluation cheap. Extraneous details without clear framing will distract your team and waste time. Anticipate the evaluation bottleneck by intentionally reducing the amount of elements to evaluate. Said more simply, this is the design version of "[Why waste time say lot word when few word do trick.](https://www.youtube.com/shorts/rhBqlDsqMAk)"
+Low fidelity helps you explore in two ways:
+1. Low fidelity keeps focus on the most important aspects of the problem. When a sculptor works in clay, they add material to ensure the overall form is clear before introducing details like facial expression or muscle tone. Extraneous details will not solve foundational issues.
+2. Low fidelity keeps idea generation **and** evaluation cheap. Anticipate the evaluation bottleneck by intentionally reducing elements. Said more simply, this is the design version of "[Why waste time say lot word when few word do trick.](https://www.youtube.com/shorts/rhBqlDsqMAk)"
 
 Shape your product like a sculptor; develop the form and then decide the details.
 
 ## Determining your own fidelity
-Define what you must learn or decide. Then, select the fidelity most suited to the task. If you want to compare high level journeys, then a user flow or storyboard can suffice. A clearly written problem statement that clarifies your constraints can help. Evaluating the product system is easier when you abstract away the implementation details. However, if your scope is narrow and well defined, moving straight to high fidelity prototyping may be the fastest way to evaluating a new experience.
+Define what you must learn or decide. Then, select the fidelity most suited to the task. If you want to compare high level journeys, then a user flow or storyboard can suffice. A clearly written problem statement that clarifies your constraints can help.
 
-The next time someone sends you a polished high fidelity prototype without clear direction, ask yourself "What problem is most important to solve?" If you feel that the direction is not yet clear, step down into low fidelity user flows or whiteboard sketches as a 'visual shorthand' to speed up collaboration. Encourage your team to focus on the most critical aspects first. And once direction and scope are clear, ramp up the prototype fidelity.
+When sharing any concept, [high fidelity will get you low level feedback, and low fidelity will get you high level feedback](https://x.com/round/status/1151500868593836038). Evaluating the product system is easier when you abstract away the implementation details. However, if your scope is narrow and well defined, moving straight to high fidelity prototyping may be the fastest way to evaluate a new experience.
+
+The next time someone sends you a polished high fidelity prototype without clear direction, ask "What decision will this help us make? What do we need to learn from this prototype?" If the details don't help answer, step down into low fidelity user flows or whiteboard sketches as a 'visual shorthand' to speed up collaboration. Encourage your team to focus on the most critical aspects first. And once direction and scope are clear, ramp up the prototype fidelity.
