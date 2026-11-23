@@ -1,6 +1,6 @@
 ---
 title: High fidelity, low definition
-description: Bring clarity through deliberate design fidelity.
+description: Form clarity through deliberate design fidelity.
 date: 2026-11-23
 status: Draft
 ---
