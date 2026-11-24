@@ -7,7 +7,7 @@ status: Draft
 
 In the beginning of my career I worked as an identity designer. Gradually I moved into digital products as a "visual designer," where I worked alongside an information architect that would spec out wireframes. Later, when the industry collapsed both roles into the "product designer," I still found it common to move from low to high fidelity in many of my projects.
 
-There was a natural, sequential process of design artifacts moving from whiteboards or wireframes (low fidelity) to pixel perfect mockups and interactive prototypes (high fidelity). Producing high fidelity used to take time, attention, and effort. Now, we (and our PMs) can generate a realistic prototype in minutes. How should we think about prototype fidelity in an AI-native world?
+There was a natural, sequential process of design artifacts moving from whiteboards or system maps (low fidelity) to pixel perfect mockups and interactive prototypes (high fidelity). Producing high fidelity used to take time, attention, and effort. Now, we (and our PMs) can generate a realistic prototype in minutes. How should we think about prototype fidelity in an AI-native world?
 
 ## Benefits of fidelity
 <span class="fidelity-highlight fidelity-highlight-first">Pre-AI, fidelity often advanced with problem definition.</span> *Definition* is how clearly a team understands the problem and its chosen direction. Whether the process started from an existing flow or a blank canvas, the collaborative friction gave teams time and space to reflect together. This enabled shared understanding and alignment.
@@ -28,7 +28,7 @@ Generating detail is now incredibly easy with AI, but evaluation has become the 
 ## Deliberate fidelity choices
 Most prototypes communicate or provoke a decision. Yes, generative prototyping can speed up design production. But we shouldn't confuse conceptual sketches and blueprints. Fidelity is a design tactic, and deploying the right level of abstraction should increase your learning and decision velocity.
 
-User flows, storyboards, sketches, whiteboards, and wireframes remain useful in an AI-native design process. Low fidelity enables your team to move at high velocity in the stages of early definition. You focus on the right problems while trusting that the details can be filled in later.
+User flows, storyboards, sketches, and whiteboards remain useful in an AI-native design process. Low fidelity enables your team to move at high velocity in the stages of early definition. You focus on the right problems while trusting that the details can be filled in later.
 
 High fidelity is useful when people must experience the details to evaluate a solution. For a narrow or incremental change, that may be the fastest place to start. But many teams move directly to implementation and sidestep problem definition. The risk is moving 10x as fast in the *wrong direction*.
 
