@@ -66,10 +66,11 @@
             }
             themeColor.content = theme.base;
             root.style.setProperty('--color-base', theme.base);
+            root.style.backgroundColor = theme.base;
             root.style.setProperty('--color-accent', theme.accent);
             root.style.setProperty('--color-accent-50', hexToRgba(theme.accent, 0.5));
 
-            if (document.body.classList.contains('article-page')) {
+            if (document.body?.classList.contains('article-page')) {
                 const colors = articleTextColors(theme);
                 document.body.style.setProperty('--color-text-primary', colors.primary);
                 document.body.style.setProperty('--color-text-secondary', colors.secondary);
@@ -106,16 +107,22 @@
             }
         }
 
-        // Theme switcher button
-        document.getElementById('theme-switcher').addEventListener('click', nextTheme);
-
-        // Initialize theme
+        // Set Safari's chrome and root color before the first page paint.
         initTheme();
+        function bindThemeControls() {
+            applyTheme(currentThemeIndex);
+            document.getElementById('theme-switcher')?.addEventListener('click', nextTheme);
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bindThemeControls, { once: true });
+        } else {
+            bindThemeControls();
+        }
 
 })();
 
 // Keep direction detection independent of the homepage's section tracking.
-(() => {
+function initScrollNavigation() {
     const header = document.querySelector('.site-header');
     const nav = header?.querySelector('.site-nav--sections');
     if (!nav) return;
@@ -148,4 +155,10 @@
     mobile.addEventListener('change', sync);
     window.addEventListener('pageshow', sync);
     sync();
-})();
+
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollNavigation, { once: true });
+} else {
+    initScrollNavigation();
+}
