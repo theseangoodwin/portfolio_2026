@@ -1,7 +1,7 @@
 # Writing
 
 ### [High fidelity, low definition](/articles/high-fidelity-low-definition)
-*November 19, 2026*
+*November 23, 2026*
 
 Form clarity through deliberate design fidelity.
 
