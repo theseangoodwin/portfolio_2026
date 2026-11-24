@@ -77,35 +77,16 @@ document.querySelectorAll('.fidelity-diagram').forEach(diagram => {
             : diagram.closest('.article-body')?.querySelector('.fidelity-highlight:not(.fidelity-highlight-first)');
         if (!highlight) return;
         highlightAnimations.get(stage)?.cancel();
-        if (!CSS.highlights || typeof Highlight === 'undefined') return;
-        const name = `fidelity-emphasis-${stage}`;
-        const node = highlight.firstChild;
-        const range = document.createRange();
-        const selection = new Highlight(range);
-        CSS.highlights.set(name, selection);
-        let animationFrame;
-        let started;
-        const revealDuration = reducedMotion.matches ? 0 : 1500;
-        const fadeDuration = 1000;
-        const duration = revealDuration + 3000 + fadeDuration;
+        // An ordinary inline background follows wrapped text reliably in Safari.
+        highlight.classList.add('is-emphasized');
+        let timeout;
         const clear = () => {
-            cancelAnimationFrame(animationFrame);
-            CSS.highlights.delete(name);
-            highlight.style.removeProperty('--highlight-strength');
+            clearTimeout(timeout);
+            highlight.classList.remove('is-emphasized');
+            highlightAnimations.delete(stage);
         };
         highlightAnimations.set(stage, { cancel: clear });
-        function paint(now) {
-            started ??= now;
-            const elapsed = now - started;
-            const reveal = revealDuration ? easeOutQuart(clamp(elapsed / revealDuration)) : 1;
-            range.setStart(node, 0);
-            range.setEnd(node, Math.round(node.textContent.length * reveal));
-            const fade = clamp((elapsed - revealDuration - 3000) / fadeDuration);
-            highlight.style.setProperty('--highlight-strength', `${(1 - fade) * 100}%`);
-            if (elapsed < duration) animationFrame = requestAnimationFrame(paint);
-            else clear();
-        }
-        animationFrame = requestAnimationFrame(paint);
+        timeout = setTimeout(clear, 4500);
     }
 
     function update(next) {

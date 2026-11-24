@@ -136,8 +136,16 @@
 
 }
 
-::highlight(fidelity-emphasis-1), ::highlight(fidelity-emphasis-2) {
-  background-color: color-mix(in srgb, var(--color-text-primary) var(--highlight-strength, 100%), transparent);
-  color: color-mix(in srgb, var(--color-bg) var(--highlight-strength, 100%), var(--color-text-primary));
+.fidelity-highlight {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: transparent;
+  transition: background-color 1000ms ease-out;
 }
-
+.fidelity-highlight.is-emphasized {
+  background-color: color-mix(in srgb, currentColor 20%, transparent);
+  transition-duration: 250ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fidelity-highlight { transition: none; }
+}
