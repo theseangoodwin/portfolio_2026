@@ -1307,6 +1307,10 @@ body {
 @media screen and (max-width: 768px) {
     .has-scroll-navigation::before { bottom: -24px; }
     .has-scroll-navigation.show-mobile-links::before { bottom: -68px; }
+    /* The homepage links occupy the first row until the masthead name appears. */
+    .has-scroll-navigation:has(.site-title--scroll:not(.is-visible))::before {
+        bottom: 0;
+    }
     .has-scroll-navigation.show-mobile-links .site-nav--sections {
         transition-delay: 0s;
     }
