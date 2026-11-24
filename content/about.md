@@ -1,6 +1,6 @@
 # Sean Goodwin
 
-I am a software designer based in Washington, DC. My work and writing explore how technology can serve human flourishing.
+I am a software designer based in Washington, DC. Currently at Harvey.
 
 I have spent years developing technology to help people connect their business to the world, bring personal expression to work, help teams collaborate and create, and [expanding what lawyers can accomplish](https://www.harvey.ai/).
 
