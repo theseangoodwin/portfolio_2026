@@ -130,13 +130,14 @@ function initScrollNavigation() {
     let previous = Math.max(0, window.scrollY);
     let direction = 0;
     let travel = 0;
+    let navigating = Boolean(location.hash && [...nav.querySelectorAll('a')].some(link => link.hash === location.hash));
     header.classList.add('has-scroll-navigation');
     function sync() {
         const current = Math.max(0, Math.min(window.scrollY,
             document.documentElement.scrollHeight - window.innerHeight));
         const delta = current - previous;
         previous = current;
-        if (current <= 8) {
+        if (navigating || current <= 8) {
             header.classList.add('show-mobile-links');
             travel = 0;
             direction = 0;
@@ -151,6 +152,25 @@ function initScrollNavigation() {
         }
         nav.inert = mobile.matches && !header.classList.contains('show-mobile-links');
     }
+    nav.addEventListener('click', event => {
+        const link = event.target.closest('a');
+        if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const destination = new URL(link.href);
+        if (destination.origin !== location.origin || destination.pathname !== location.pathname || !destination.hash) return;
+        navigating = true;
+        sync();
+    }, { capture: true });
+    function resumeReadingScroll() {
+        if (!navigating) return;
+        navigating = false;
+        direction = 0;
+        travel = 0;
+    }
+    window.addEventListener('touchmove', resumeReadingScroll, { passive: true });
+    window.addEventListener('wheel', resumeReadingScroll, { passive: true });
+    window.addEventListener('keydown', event => {
+        if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)) resumeReadingScroll();
+    });
     window.addEventListener('scroll', sync, { passive: true });
     mobile.addEventListener('change', sync);
     window.addEventListener('pageshow', sync);
