@@ -34,6 +34,19 @@
 .footnote-content[hidden] { display: none; }
 .footnote-number { margin-inline-end: 12px; }
 .article-end { display: flex; justify-content: center; gap: .4em; width: calc(100% + var(--article-rail, 0px)); margin-block: 56px; color: var(--color-text-secondary); }
+.article-newsletter {
+  border-top: 1px solid var(--color-divider);
+  padding-block: 24px 40px;
+  font-family: var(--font-berkeley);
+  font-size: 14px;
+  line-height: 1.75;
+}
+.article-newsletter p { margin: 0; }
+.article-newsletter a {
+  font-family: var(--font-sans);
+  font-size: 1em;
+  text-decoration: underline;
+}
 .article-subscribe { border-block: 1px solid var(--color-divider); padding-block: 36px 40px; scroll-margin-top: 24px; }
 .article-subscribe h2 { margin: 0 0 16px; font-size: 36px; }
 .article-subscribe > p:not(.article-eyebrow) { color: var(--color-text-secondary); font-size: 14px; max-width: 55ch; }
